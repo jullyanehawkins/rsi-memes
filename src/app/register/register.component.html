@@ -1,7 +1,5 @@
 <body>
   <img class="logo" src="../assets/rsi-logo.jpg" alt="RSI Logo" />
-<div class="jumbotron">
-  <div class="container">
     <div class="row">
       <div class="col-md-6 offset-md-3">
         <h2>Sign Up</h2>
@@ -26,12 +24,10 @@
             <div *ngIf="f.password.errors.minlength">Password must be at least 6 characters</div>
           </div>
           <div class="form-group">
-            <button [disabled]="loading" class="btn btn-primary">Register</button>
+            <button [disabled]="loading" class="btn btn-primary">Sign Up</button>
           </div>
           </form>
       </div>
-    </div>
-  </div>
 </div>
 </body>
 
