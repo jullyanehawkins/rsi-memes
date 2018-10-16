@@ -42,6 +42,8 @@ html {
 .dropdown {
   position: relative;
   display: inline-block;
+  top: 40px;
+  right: 40px;
 }
 
 .dropdown-content {
