@@ -6,13 +6,16 @@ import { AppRoutingModule } from './app-routing.module';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { ImageResultComponent } from './image-result/image-result.component';
+import { NgbdDropdownBasicComponent } from './dropdown-basic';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     RegisterComponent,
-    ImageResultComponent
+    ImageResultComponent,
+    NgbdDropdownBasicComponent
+
   ],
   imports: [
     BrowserModule,
