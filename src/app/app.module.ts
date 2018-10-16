@@ -7,6 +7,8 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { ImageResultComponent } from './image-result/image-result.component';
 import { NgbdDropdownBasicComponent } from './dropdown-basic';
+import { HttpClientModule } from '@angular/common/http';
+import { ImageService } from './image.service';
 
 @NgModule({
   declarations: [
@@ -20,9 +22,10 @@ import { NgbdDropdownBasicComponent } from './dropdown-basic';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [ImageService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

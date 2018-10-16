@@ -12,7 +12,7 @@ export class FakeBackendInterceptor implements HttpInterceptor {
     // array in local storage for registered users.
     let users: any [] = JSON.parse(localStorage.getItem('users')) || [];
     // wrap in delayed observable to simulate server api call
-    return of(null).pipe(mergeMap()) => {
+    return of(null).pipe((mergeMap) => {
       // authenticate
       if (request.url.endsWith('/users/authenticate') && request.method === 'POST') {
         // find if any user matches login credentials
