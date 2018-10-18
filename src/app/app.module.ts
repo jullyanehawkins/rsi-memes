@@ -28,7 +28,8 @@ import { HttpModule } from '@angular/http';
     ReactiveFormsModule,
     HttpClientModule,
     FormsModule,
-    HttpModule
+    HttpModule,
+    AppRoutingModule
 
   ],
   providers: [ImageService],

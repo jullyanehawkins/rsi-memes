@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ImageService } from '../image.service';
+import { Image } from '../image';
 
 @Component({
   selector: 'app-image-result',
@@ -31,6 +32,7 @@ export class ImageResultComponent implements OnInit {
     );
   }
   ngOnInit() {
+
   }
 
 }

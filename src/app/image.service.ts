@@ -3,6 +3,8 @@ import { environment } from '../environments/environment';
 import { Observable } from 'rxjs';
 import { Image } from './image';
 import { HttpClient } from '@angular/common/http';
+import { map } from 'rxjs/operators';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -15,7 +17,8 @@ export class ImageService {
 
   constructor(private http: HttpClient) { }
   getImage(query) {
-    return this.http.get(`${this.imageUrl}/image`);
+    return this.http.get(this.URL + query + this.perPage)
+    .map(res => res.json());
   }
   }
 
