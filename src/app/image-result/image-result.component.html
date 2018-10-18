@@ -1,5 +1,5 @@
 <input class="search" [(ngModel)]="searchQuery" placeholder="Search images">
-<button (click)="searchImage(searchQuery)" type ="button">Find images</button>
+<button (click)="searchImage(searchQuery)" type ="button" class="search">Find images</button>
 <div *ngFor="let image of images" class=image-container>
 
 
