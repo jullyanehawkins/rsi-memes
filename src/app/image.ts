@@ -1,3 +1,5 @@
 export class Image {
-  image: []; string;
+  id: number;
+  name: string;
+  image: any;
 }

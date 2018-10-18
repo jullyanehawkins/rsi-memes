@@ -24,6 +24,7 @@
     "@types/webpack-env": "^1.13.6",
     "bootstrap": "^4.1.3",
     "core-js": "^2.5.4",
+    "ng-mat-search-bar": "^2.0.0-beta.1",
     "rxjs": "~6.2.0",
     "zone.js": "~0.8.26"
   },

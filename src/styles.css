@@ -31,8 +31,8 @@ html {
 }
 
 .dropbtn {
-  background-color: #4CAF50;
-  color: white;
+  background-color: white;
+  color: black;
   padding: 16px;
   font-size: 16px;
   border: none;
@@ -40,10 +40,10 @@ html {
 }
 
 .dropdown {
-  position: relative;
+  position: absolute;
   display: inline-block;
-  top: 40px;
-  right: 40px;
+  top: 65px;
+  right: 50px;
 }
 
 .dropdown-content {
@@ -69,5 +69,5 @@ html {
 }
 
 .dropdown:hover .dropbtn {
-  background-color: #3e8e41;
+  background-color: gray;
 }
