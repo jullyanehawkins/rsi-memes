@@ -71,3 +71,10 @@ html {
 .dropdown:hover .dropbtn {
   background-color: gray;
 }
+
+.search {
+  position: relative;
+  display: inline-block;
+  top: 100px;
+  left: 340px;
+}
