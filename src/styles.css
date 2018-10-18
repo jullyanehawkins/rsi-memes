@@ -37,6 +37,7 @@ html {
   font-size: 16px;
   border: none;
   cursor: pointer;
+  font-family: 'Roboto Mono', monospace;
 }
 
 .dropdown {
@@ -77,4 +78,5 @@ html {
   display: inline-block;
   top: 100px;
   left: 340px;
+  font-family: 'Roboto Mono', monospace;
 }
