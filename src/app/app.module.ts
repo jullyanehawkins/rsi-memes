@@ -6,7 +6,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { ImageResultComponent } from './image-result/image-result.component';
-import { NgbdDropdownBasicComponent } from './dropdown-basic';
+import { NgbdDropdownBasicComponent } from './navigation/dropdown-basic';
 import { HttpClientModule } from '@angular/common/http';
 import { ImageService } from './image.service';
 import { HttpModule } from '@angular/http';
@@ -19,8 +19,7 @@ import { HttpModule } from '@angular/http';
     LoginComponent,
     RegisterComponent,
     ImageResultComponent,
-    NgbdDropdownBasicComponent
-
+    NgbdDropdownBasicComponent,
   ],
   imports: [
     BrowserModule,
@@ -29,8 +28,7 @@ import { HttpModule } from '@angular/http';
     HttpClientModule,
     FormsModule,
     HttpModule,
-    AppRoutingModule
-
+    AppRoutingModule,
   ],
   providers: [ImageService],
   bootstrap: [AppComponent]
