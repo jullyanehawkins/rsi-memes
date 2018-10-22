@@ -10,6 +10,7 @@ import { NgbdDropdownBasicComponent } from './navigation/dropdown-basic';
 import { HttpClientModule } from '@angular/common/http';
 import { ImageService } from './image.service';
 import { HttpModule } from '@angular/http';
+import { HomeComponent } from './home/home.component';
 
 
 
@@ -20,6 +21,7 @@ import { HttpModule } from '@angular/http';
     RegisterComponent,
     ImageResultComponent,
     NgbdDropdownBasicComponent,
+    HomeComponent,
   ],
   imports: [
     BrowserModule,
