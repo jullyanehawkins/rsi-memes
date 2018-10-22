@@ -12,11 +12,12 @@ export class ImageService {
   private query: string;
   private API_KEY: string = environment.MEME_API_KEY;
   private imageUrl: string = environment.MEME_API_URL;
-  private URL: string = this.imageUrl + this.API_KEY + '&q=';
+  private URL: string = this.imageUrl + '?apiKey=' + this.API_KEY + '&q=';
   private perPage: string = '&per_page=5';
 
   constructor(private http: Http) { }
   getImage(query): Observable<Image[]> {
+    console.log(this.URL + query + this.perPage);
     return this.http.get(this.URL + query + this.perPage).pipe(
     map(response => <Image[]> response.json()));
   }

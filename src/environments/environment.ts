@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
   MEME_API_KEY: 'e26d7a4b-9e2e-4b3f-83cc-732d14552bc4',
-  MEME_API_URL: 'http://version1.api.memegenerator.net/#MgImages_Search'
+  MEME_API_URL: 'http://version1.api.memegenerator.net//MgImages_Search'
 };
 
 /*
