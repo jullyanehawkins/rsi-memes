@@ -1,5 +1,5 @@
 export class Image {
   id: number;
-  name: string;
+  tags: string;
   image: Image[];
 }

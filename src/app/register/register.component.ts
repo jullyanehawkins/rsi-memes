@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
-
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -10,8 +9,10 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class RegisterComponent implements OnInit {
   registerForm: FormGroup;
   submitted = false;
+  myForm: FormGroup;
 
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(private formBuilder: FormBuilder) {
+   }
 
   ngOnInit()  {
     this.registerForm = this.formBuilder.group({
@@ -21,18 +22,12 @@ export class RegisterComponent implements OnInit {
   }
   // convenience getter for easy acess to form fields
     get f() { return this.registerForm.controls; }
-
-    // checkPassword(confirmPassword: string) {
-    //  return password.value === confirmPassword;
-    // }
   onSubmit() {
-    this.submitted = true;
-
+    if (this.email !== '' && this.password !== '')this.submitted = true;
     // stop here if form is invalid
     if (this.registerForm.invalid) {
       return;
     }
     alert('SUCCESS!!');
   }
-
 }
