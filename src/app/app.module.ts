@@ -11,6 +11,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { ImageService } from './image.service';
 import { HttpModule } from '@angular/http';
 import { HomeComponent } from './home/home.component';
+import { AuthenticationService } from './services/authentication.service';
 
 
 
@@ -32,7 +33,7 @@ import { HomeComponent } from './home/home.component';
     HttpModule,
     AppRoutingModule,
   ],
-  providers: [ImageService],
+  providers: [ImageService, AuthenticationService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
