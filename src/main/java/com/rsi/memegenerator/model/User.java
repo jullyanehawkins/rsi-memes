@@ -14,16 +14,12 @@ public class User {
     @GeneratedValue
     Long uuid; //= java.util.UUID.randomUUID();
     private @NonNull
-    String firstName;
-    private @NonNull
-    String lastName;
-    private @NonNull
     String email;
     private @NonNull
     String password;
 
     @Override
     public String toString() {
-        return uuid.toString() + ": name=\"" + lastName + ", " + firstName + "\" email=\"" + email + "\"";
+        return uuid.toString() + ": email=\"" + email + "\"";
     }
 }

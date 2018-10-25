@@ -2,6 +2,7 @@ package com.rsi.memegenerator.repository;
 
 import com.rsi.memegenerator.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 import java.util.List;
 
