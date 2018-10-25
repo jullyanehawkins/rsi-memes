@@ -12,14 +12,14 @@ html {
   box-sizing: inherit;
 }
 
-body {
-  background-image: url(assets/rsi-background.jpg);
-  background-repeat: no-repeat;
-  background-size: cover;
-  /* height: 100vh;
-    width: 100vw; */
-  padding: 0;
-  margin: 0;
+  body {
+    background-image: url(assets/rsi-background.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100vh;
+    width: auto;
+    padding: 0;
+    margin: 0;
 }
 
 .logo {
@@ -32,6 +32,19 @@ body {
 
 .row {
   color: white;
+  font-family: 'Roboto Mono', monospace;
+}
+
+.button-container {
+  padding-top: 30px;
+}
+
+.home {
+  float: left;
+}
+
+.dropdown {
+  float: right;
 }
 
 .dropbtn {
@@ -44,16 +57,8 @@ body {
   font-family: 'Roboto Mono', monospace;
 }
 
-.dropdown {
-  position: absolute;
-  display: inline-block;
-  top: 65px;
-  right: 50px;
-}
-
 .dropdown-content {
   display: none;
-  position: absolute;
   background-color: #f9f9f9;
   min-width: 160px;
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
@@ -69,7 +74,7 @@ body {
 }
 
 .dropdown-content a:hover {
-  background-color: #f1f1f1
+  background-color: #f1f1f1;
 }
 
 .dropdown:hover .dropdown-content {
@@ -81,9 +86,14 @@ body {
 }
 
 .search {
-  position: relative;
-  display: inline-block;
-  top: 100px;
-  left: 340px;
+  width: 100%;
+  clear: both;
+  margin-top: 20vh;
+  text-align: center;
   font-family: 'Roboto Mono', monospace;
+}
+
+.center-align {
+  text-align: center;
+  width: 50%;
 }

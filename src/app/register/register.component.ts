@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthenticationService } from '../services/authentication.service';
 
-
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -11,6 +10,7 @@ import { AuthenticationService } from '../services/authentication.service';
 export class RegisterComponent implements OnInit {
   registerForm: FormGroup;
   submitted = false;
+  myForm: FormGroup;
 
   constructor(private readonly formBuilder: FormBuilder, private readonly authenticationService: AuthenticationService) { }
 
@@ -27,19 +27,23 @@ export class RegisterComponent implements OnInit {
   //  return password.value === confirmPassword;
   // }
   onSubmit(email: string, password: string) {
-    this.submitted = true;
 
+    // stop here if form is invalid
     if (this.registerForm.invalid) {
       return;
     }
-    console.log(this.authenticationService.create(email, password,
-      response => {
-        console.log(response);
-      }, err => {
-        console.error('[AuthenticationService error]: ' + err.message);
-      }, () => {
-        console.log('completed');
-      }));
-  }
 
+    if (email !== '' && password !== '') {
+      this.submitted = true;
+
+      console.log(this.authenticationService.create(email, password,
+        response => {
+          console.log(response);
+        }, err => {
+          console.error('[AuthenticationService error]: ' + err.message);
+        }, () => {
+          console.log('completed');
+        }));
+    }
+  }
 }
