@@ -1,5 +1,7 @@
-export class Image {
+export class Images {
   id: number;
-  tags: string;
-  image: Image[];
+  embed_url: string;
+  title: string;
+  url: string;
+  downsized_url: string;
 }

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
 import { Observable } from 'rxjs';
-import { Image } from '../image';
+import { Images } from '../image';
 import { Http } from '@angular/http';
 import { map } from 'rxjs/operators';
 
@@ -16,9 +16,9 @@ export class ImageService {
   private perPage = '&per_page=5';
 
   constructor(private http: Http) { }
-  getImage(query): Observable<Image[]> {
+  getImage(query): Observable<Images[]> {
     return this.http.get(this.URL + query + this.perPage).pipe(
-    map(response => <Image[]> response.json()));
+    map(response => <Images[]> response.json()));
   }
   }
 

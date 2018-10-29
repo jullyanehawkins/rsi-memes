@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ImageService } from '../image.service';
-import { Image } from '../image';
+import { Images } from '../image';
 
 @Component({
   selector: 'app-image-result',
@@ -8,14 +8,24 @@ import { Image } from '../image';
 
 })
 export class ImageResultComponent implements OnInit {
+  searchQuery: '';
   images: any[];
   imagesFound: boolean = false;
   searching: boolean = false;
 
-  handleSuccess(data) {
+  handleSuccess(response) {
     this.imagesFound = true;
-    this.images = data.hits;
-    console.log(data.hits);
+    this.images = response.data.map( (image) => {
+
+      return {
+        id: image.id,
+        embed_url: image.embed_url,
+        title: image.title ,
+        url: image.url,
+        downsized_url: image.images.downsized.url
+      };
+    });
+    console.log(this.images);
   }
 
   handleError(error) {
@@ -23,7 +33,7 @@ export class ImageResultComponent implements OnInit {
   }
   constructor(private imageService: ImageService) { }
 
-  searchImage(query: string) {
+  onSubmit(query: string) {
     this.searching = true;
     return this.imageService.getImage(query).subscribe(
       data => this.handleSuccess(data),
