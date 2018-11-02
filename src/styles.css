@@ -97,3 +97,12 @@ html {
   text-align: center;
   width: 50%;
 }
+
+input {
+  color: #f1f1f1;
+  font-family: 'Roboto Mono', monospace;
+}
+
+button {
+  font-family: 'Roboto Mono', monospace;
+}

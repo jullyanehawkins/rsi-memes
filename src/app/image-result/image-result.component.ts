@@ -41,9 +41,9 @@ export class ImageResultComponent implements OnInit {
       reader.onload = (event) => {
         this.url = event.target.result;
       }
-      onUpload() {
+      // onUpload() {
 
-      }
+      // }
     }
   }
 
