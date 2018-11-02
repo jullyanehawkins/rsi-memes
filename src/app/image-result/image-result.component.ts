@@ -12,6 +12,7 @@ export class ImageResultComponent implements OnInit {
   images: any[];
   imagesFound: boolean = false;
   searching: boolean = false;
+  url = '';
 
   handleSuccess(response) {
     this.imagesFound = true;
@@ -31,6 +32,22 @@ export class ImageResultComponent implements OnInit {
   handleError(error) {
     console.log(error);
   }
+  onSelectFile(event) {
+    if (event.target.files && event.target.files[0]) {
+      var reader = new FileReader();
+
+      reader.readAsDataURL(event.target.files[0]);
+
+      reader.onload = (event) => {
+        this.url = event.target.result;
+      }
+      onUpload() {
+
+      }
+    }
+  }
+
+
   constructor(private imageService: ImageService) { }
 
   onSubmit(query: string) {
@@ -40,6 +57,7 @@ export class ImageResultComponent implements OnInit {
       error => this.handleError(error),
       () => this.searching = false
     );
+
   }
   ngOnInit() {
 
