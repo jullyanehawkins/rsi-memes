@@ -1,6 +1,5 @@
 package com.rsi.memegenerator.controller;
 
-import com.rsi.memegenerator.URLConstants;
 import com.rsi.memegenerator.exception.UserNotFoundException;
 import com.rsi.memegenerator.model.User;
 import com.rsi.memegenerator.repository.UserRepository;
@@ -9,10 +8,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
-import static com.rsi.memegenerator.URLConstants.API;
-import static com.rsi.memegenerator.URLConstants.SIGN_UP;
-import static com.rsi.memegenerator.URLConstants.LOGIN;
-import static com.rsi.memegenerator.URLConstants.USER;
+import static com.rsi.memegenerator.constant.URLConstants.API;
+import static com.rsi.memegenerator.constant.URLConstants.SIGN_UP;
+import static com.rsi.memegenerator.constant.URLConstants.LOGIN;
+import static com.rsi.memegenerator.constant.URLConstants.USER;
 
 //@Controller
 @RestController

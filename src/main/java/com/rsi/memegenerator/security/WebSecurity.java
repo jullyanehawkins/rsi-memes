@@ -13,10 +13,10 @@ import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.context.annotation.Bean;
 
-import static com.rsi.memegenerator.URLConstants.API;
-import static com.rsi.memegenerator.URLConstants.STORAGE;
-import static com.rsi.memegenerator.URLConstants.UPLOAD_FILE;
-import static com.rsi.memegenerator.URLConstants.USER;
+import static com.rsi.memegenerator.constant.URLConstants.API;
+import static com.rsi.memegenerator.constant.URLConstants.STORAGE;
+import static com.rsi.memegenerator.constant.URLConstants.UPLOAD_BLANK_MEME;
+import static com.rsi.memegenerator.constant.URLConstants.USER;
 
 
 /**
@@ -44,7 +44,7 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
             .cors()
         .and()
             .authorizeRequests()
-            .antMatchers(HttpMethod.POST, STORAGE + UPLOAD_FILE)
+            .antMatchers(HttpMethod.POST, STORAGE + UPLOAD_BLANK_MEME)
             .permitAll()
         .and()
             .csrf()

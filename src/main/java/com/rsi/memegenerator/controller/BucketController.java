@@ -1,30 +1,39 @@
 package com.rsi.memegenerator.controller;
 
-import com.rsi.memegenerator.service.AmazonClient;
+import com.rsi.memegenerator.constant.FileSizeConstants;
+import com.rsi.memegenerator.service.S3Client;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import static com.rsi.memegenerator.URLConstants.*;
+import static com.rsi.memegenerator.constant.URLConstants.*;
 
 @RestController
 @RequestMapping(STORAGE)
 public class BucketController {
 
-    private AmazonClient amazonClient;
+    private S3Client s3Client;
 
     @Autowired
-    BucketController(AmazonClient amazonClient) {
-        this.amazonClient = amazonClient;
+    BucketController(S3Client amazonClient) {
+        this.s3Client = amazonClient;
     }
 
-    @PostMapping(UPLOAD_FILE)
+    @PostMapping(UPLOAD_BLANK_MEME)
     public String uploadFile(@RequestPart(value = "file") MultipartFile file) {
-        return this.amazonClient.uploadFile(file, BLANK_MEMES);
+        if(file.getSize() > 3 * FileSizeConstants.MEGIBYTE)
+            return "file too big";
+        return this.s3Client.uploadFile(file, BLANK_MEMES);
     }
+
+//    @PostMapping(UPLOAD_BLANK_MEME)
+//    public String downloadFile(@RequestBody String urlString) {
+//        return this.s3Client.downloadFileFromS3Bucket(urlString);
+//    }
+
 
     @DeleteMapping(DELETE_FILE)
     public String deleteFile(@RequestPart(value = "url") String fileUrl) {
-        return this.amazonClient.deleteFileFromS3Bucket(fileUrl);
+        return this.s3Client.deleteFileFromS3Bucket(fileUrl);
     }
 }
