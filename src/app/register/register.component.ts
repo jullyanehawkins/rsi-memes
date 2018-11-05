@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthenticationService } from '../services/authentication.service';
+import { CompareValidatorDirective } from '../compare-validator.directive/compare';
 
 @Component({
   selector: 'app-register',
