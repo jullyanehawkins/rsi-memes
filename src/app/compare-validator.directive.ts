@@ -1,10 +1,12 @@
 import { Directive, Input } from '@angular/core';
-import { Validator, AbstractControl, ValidationErrors } from '@angular/forms';
+import { Validator, AbstractControl, ValidationErrors, NG_VALIDATORS } from '@angular/forms';
 import { Condition } from 'selenium-webdriver';
+import { Subscription } from 'rxjs';
 
 
 @Directive({
-  selector: '[compare]'
+  selector: '[compare]',
+  providers: [{provide: NG_VALIDATORS, useExisting: CompareValidatorDirective, multi: true}]
 })
 export class CompareValidatorDirective implements Validator {
 
@@ -14,9 +16,11 @@ export class CompareValidatorDirective implements Validator {
   validate(c: AbstractControl): ValidationErrors | null {
     const controlToCompare = c.root.get(this.controlNameToCompare);
     if (controlToCompare) {
-
-    }
-    return
+      const subscription: Subscription = controlToCompare.valueChanges
+      .subscribe(() => { c.updateValueAndValidity();
+        subscription.unsubscribe();
+    });
+    return controlToCompare && controlToCompare.value !== c.value ? {'compare': true} : null;
   }
 
 }

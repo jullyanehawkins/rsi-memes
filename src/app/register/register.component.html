@@ -16,15 +16,12 @@
           <div *ngIf="f.password.errors?.required">Password is required</div>
           <div *ngIf="f.password.errors?.minlength">Password must be at least 6 characters</div>
         </div>
+        <form-action="">
+          <div class="form-group">
+            <label></label>
+          <input type="text" class="form-control">
+        </div>
 
-        <!-- <div class="form-group"> -->
-        <!-- <label>Confirm password</label>
-            <input type="password" formControlName="confirmPassword" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.confirmPassword.errors }"/>
-            <div *ngIf="submmited && f.confirmPassword.errors" class="invalid-feedback">
-              <div *ngIf="f.confirmPassword.errors?.required">Please confirm your password</div>
-              <div *ngIf="f.confirmPassword.errors?.minlength">Must be at least 6 characters</div>
-              </div>
-            </div> -->
         <div class="form-group">
           <button class="btn btn-primary">Sign Up</button>
         </div>
