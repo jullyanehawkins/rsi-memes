@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthenticationService } from '../services/authentication.service';
-import { CompareValidatorDirective } from '../compare-validator.directive/compare';
+
 
 @Component({
   selector: 'app-register',
@@ -21,18 +21,10 @@ export class RegisterComponent implements OnInit {
       password: ['', [Validators.required, Validators.minLength(6)]]
     });
   }
-  // checkPasswords(group: FormGroup) {
-  //   let pass = group.controls.password.value;
-  //   let confirmPass = group.controls.value;
 
-  //   return pass
-  // }
   // convenience getter for easy acess to form fields
   get f() { return this.registerForm.controls; }
 
-  // checkPassword(confirmPassword: string) {
-  //  return password.value === confirmPassword;
-  // }
   onSubmit(email: string, password: string) {
 
     // stop here if form is invalid

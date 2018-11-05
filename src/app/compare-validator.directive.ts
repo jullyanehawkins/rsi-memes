@@ -19,6 +19,7 @@ import { Subscription } from 'rxjs';
   ]
 })
 export class CompareValidatorDirective implements Validator {
+  // tslint:disable-next-line:no-input-rename
   @Input('compare')
   controlNameToCompare: string;
   constructor() {}
