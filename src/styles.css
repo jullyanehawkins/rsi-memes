@@ -89,7 +89,7 @@ html {
 .search {
   width: 100%;
   clear: both;
-  padding: 2vh;
+  padding: 0.5vh;
   text-align: center;
   font-family: 'Roboto Mono', monospace;
 }
