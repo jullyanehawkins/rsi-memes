@@ -20,6 +20,12 @@ export class RegisterComponent implements OnInit {
       password: ['', [Validators.required, Validators.minLength(6)]]
     });
   }
+  // checkPasswords(group: FormGroup) {
+  //   let pass = group.controls.password.value;
+  //   let confirmPass = group.controls.value;
+
+  //   return pass
+  // }
   // convenience getter for easy acess to form fields
   get f() { return this.registerForm.controls; }
 
