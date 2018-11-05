@@ -13,6 +13,7 @@ export class ImageResultComponent implements OnInit {
   imagesFound: boolean = false;
   searching: boolean = false;
   url = '';
+  selectedFile = null;
 
   handleSuccess(response) {
     this.imagesFound = true;
@@ -40,7 +41,7 @@ export class ImageResultComponent implements OnInit {
 
       reader.onload = (event) => {
         this.url = event.target.result;
-      }
+      };
       // onUpload() {
 
       // }
