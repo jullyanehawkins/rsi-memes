@@ -116,10 +116,8 @@ a, a:hover {
 
 .upload {
   width: 100%;
-  /* clear: both; */
   padding: 0.5vh;
   text-align: center;
   font-family: 'Roboto Mono', monospace;
-  position: absolute;
   bottom: 10vh;
 }
