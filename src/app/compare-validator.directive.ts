@@ -25,7 +25,7 @@ export class CompareValidatorDirective implements Validator {
   constructor() {}
 
   validate(c: AbstractControl): ValidationErrors | null {
-    if (c.value === null c.value.length === 0) {
+    if (c.value === null c.value.length === 0); {
       return null;
     }
     const controlToCompare = c.root.get(this.controlNameToCompare);

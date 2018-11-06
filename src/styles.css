@@ -121,3 +121,8 @@ a, a:hover {
   font-family: 'Roboto Mono', monospace;
   bottom: 10vh;
 }
+
+.uploaded-img {
+  padding: 2vh;
+  text-align: center;
+}
