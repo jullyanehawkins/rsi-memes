@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthenticationService } from '../services/authentication.service';
 
+
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -20,12 +21,10 @@ export class RegisterComponent implements OnInit {
       password: ['', [Validators.required, Validators.minLength(6)]]
     });
   }
+
   // convenience getter for easy acess to form fields
   get f() { return this.registerForm.controls; }
 
-  // checkPassword(confirmPassword: string) {
-  //  return password.value === confirmPassword;
-  // }
   onSubmit(email: string, password: string) {
 
     // stop here if form is invalid
