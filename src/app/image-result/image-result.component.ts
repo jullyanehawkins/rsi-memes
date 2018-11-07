@@ -55,7 +55,7 @@ export class ImageResultComponent implements OnInit {
       // onUpload() {
 
       // }
-  ngOnInit() {}
+   ngOnInit() {}
 }
   }
 }

@@ -12,7 +12,6 @@ import { ImageService } from './image.service';
 import { HttpModule } from '@angular/http';
 import { HomeComponent } from './home/home.component';
 import { AuthenticationService } from './services/authentication.service';
-import { CompareValidatorDirective } from './compare-validator.directive';
 
 
 
@@ -25,7 +24,6 @@ import { CompareValidatorDirective } from './compare-validator.directive';
     ImageResultComponent,
     NgbdDropdownBasicComponent,
     HomeComponent,
-    CompareValidatorDirective,
 
   ],
   imports: [
