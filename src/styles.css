@@ -121,3 +121,15 @@ a, a:hover {
   font-family: 'Roboto Mono', monospace;
   bottom: 10vh;
 }
+
+.uploaded-img {
+  padding: 2vh;
+  text-align: center;
+}
+
+.waves {
+  position:fixed;
+  bottom:0px;
+  right:0px;
+  height: 25%;
+}
