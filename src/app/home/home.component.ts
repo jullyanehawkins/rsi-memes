@@ -16,13 +16,14 @@ export class HomeComponent implements OnInit {
 
       reader.onload = event => {
         this.url = event.target.result;
-      }
+      };
       // onUpload() {
 
       // }
-  constructor() { }
+  // constructor() { }
 
-  ngOnInit() {
+  // ngOnInit() {
   }
-
+    }
 }
+
