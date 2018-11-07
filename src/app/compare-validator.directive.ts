@@ -25,7 +25,8 @@ export class CompareValidatorDirective implements Validator {
   constructor() {}
 
   validate(c: AbstractControl): ValidationErrors | null {
-    if (c.value === null c.value.length === 0) {
+    // tslint:disable-next-line:curly
+    if (c.value === null c.value.length === 0); {
       return null;
     }
     const controlToCompare = c.root.get(this.controlNameToCompare);

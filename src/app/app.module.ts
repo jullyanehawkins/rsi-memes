@@ -16,6 +16,7 @@ import { CompareValidatorDirective } from './compare-validator.directive';
 
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -25,6 +26,7 @@ import { CompareValidatorDirective } from './compare-validator.directive';
     NgbdDropdownBasicComponent,
     HomeComponent,
     CompareValidatorDirective,
+
   ],
   imports: [
     BrowserModule,
