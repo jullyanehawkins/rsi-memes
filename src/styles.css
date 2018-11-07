@@ -23,6 +23,10 @@ html {
     margin: 0;
 }
 
+.logo-container {
+  padding: 20px;
+}
+
 .logo {
   position: relative;
   height: 110px;
@@ -81,6 +85,7 @@ html {
 .dropdown:hover .dropdown-content {
   display: block;
   position: absolute;
+  width: 100%;
 }
 
 .dropdown:hover .dropbtn {
@@ -125,6 +130,9 @@ a, a:hover {
 .uploaded-img {
   padding: 2vh;
   text-align: center;
+  margin: 30px auto;
+  align-self: center;
+  display: flex;
 }
 
 .waves {
