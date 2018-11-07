@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ImageService } from '../image.service';
 import { Images } from '../image';
+import { StorageService } from '../services/storage.service';
 
 @Component({
   selector: 'app-image-result',
@@ -12,7 +13,11 @@ export class ImageResultComponent implements OnInit {
   imagesFound: boolean = false;
   searching: boolean = false;
   url = '';
+  file;
   selectedFile = null;
+
+  constructor(private imageService: ImageService, private storageService: StorageService) { }
+
 
   handleSuccess(response) {
     this.imagesFound = true;
@@ -32,7 +37,6 @@ export class ImageResultComponent implements OnInit {
     console.log(error);
   }
 
-  constructor(private imageService: ImageService) {}
   onSubmit(query: string) {
     this.searching = true;
     return this.imageService
@@ -47,15 +51,29 @@ export class ImageResultComponent implements OnInit {
     if (event.target.files && event.target.files[0]) {
       let reader = new FileReader();
 
+
       reader.readAsDataURL(event.target.files[0]);
+
+      this.file = event.target.files[0];
 
       reader.onload = event => {
         this.url = event.target.result;
       };
-      // onUpload() {
-
-      // }
-  ngOnInit() {}
-}
+    }
   }
+
+  onUpload() {
+    // let reader = new FileReader();
+    // reader.readAsDataURL(file);
+
+    console.log(this.file);
+    this.storageService.upload(this.file,
+      (res) => { console.log(res) },
+      (res) => { console.log(res) },
+      null);
+  }
+
+  ngOnInit() { }
 }
+
+

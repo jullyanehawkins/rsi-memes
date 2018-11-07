@@ -8,6 +8,7 @@ import { API } from '../api';
 export class AuthenticationService {
     private SIGNUP_API = '/sign-up';
     private LOGIN_API = '/login';
+    private API_URL = '/api';
 
     constructor(private http: HttpClient) { }
 
@@ -16,9 +17,9 @@ export class AuthenticationService {
         const formData: FormData = new FormData();
         formData.append('email', email);
         formData.append('password', password);
-        console.log(API.API_URL + this.SIGNUP_API);
+        console.log(API + this.API_URL  + this.SIGNUP_API);
         return this.http
-            .post(API.API_URL + this.SIGNUP_API, formData, { responseType: 'text' })
+            .post(API + this.API_URL + this.SIGNUP_API, formData, { responseType: 'text' })
             .subscribe(onResponse, onError, onComplete);
     }
 

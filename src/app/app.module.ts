@@ -12,7 +12,7 @@ import { ImageService } from './image.service';
 import { HttpModule } from '@angular/http';
 import { HomeComponent } from './home/home.component';
 import { AuthenticationService } from './services/authentication.service';
-import { CompareValidatorDirective } from './compare-validator.directive';
+import { StorageService } from './services/storage.service';
 
 
 
@@ -25,7 +25,6 @@ import { CompareValidatorDirective } from './compare-validator.directive';
     ImageResultComponent,
     NgbdDropdownBasicComponent,
     HomeComponent,
-    CompareValidatorDirective,
 
   ],
   imports: [
@@ -37,7 +36,7 @@ import { CompareValidatorDirective } from './compare-validator.directive';
     HttpModule,
     AppRoutingModule,
   ],
-  providers: [ImageService, AuthenticationService],
+  providers: [ImageService, AuthenticationService, StorageService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
