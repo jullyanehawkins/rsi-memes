@@ -122,24 +122,28 @@ a, a:hover {
 
 .upload {
   width: 100%;
-  padding: 0.5vh;
+  padding: 1vh;
   text-align: center;
   font-family: 'Roboto Mono', monospace;
   bottom: 10vh;
 }
 
-.uploaded-img {
+/* .uploaded-img {
   padding: 2vh;
   text-align: center;
   margin: 30px auto;
   align-self: center;
   display: flex;
-}
+} */
 
 .waves {
   position:fixed;
   bottom:0px;
   right:0px;
   height: 25%;
+  z-index: -1;
 }
 
+.search-pad {
+  padding: 1vh;
+}

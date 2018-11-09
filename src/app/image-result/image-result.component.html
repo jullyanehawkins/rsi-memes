@@ -1,4 +1,5 @@
 <div class="search">
+  <div class="search-pad">
 <input [(ngModel)]="searchQuery" placeholder="Search for images" (keyup.enter)="onSubmit(searchQuery)">
 <button (click)="onSubmit(searchQuery)" type ="button">Find images</button>
 
@@ -8,8 +9,6 @@
 </div>
 
 <img class="uploaded-img" [src]="url" height="200">
-<br/>
 <div class="upload">
 <input type='file' class="file" (change)="onSelectFile($event)">
 <button (click)="onUpload()">Upload</button>
-
