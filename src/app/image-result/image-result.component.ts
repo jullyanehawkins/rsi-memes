@@ -10,8 +10,8 @@ import { StorageService } from '../services/storage.service';
 export class ImageResultComponent implements OnInit {
   searchQuery: '';
   images: any[];
-  imagesFound: boolean = false;
-  searching: boolean = false;
+  imagesFound = false;
+  searching = false;
   url = '';
   file;
   selectedFile = null;
@@ -49,9 +49,7 @@ export class ImageResultComponent implements OnInit {
   }
   onSelectFile(event) {
     if (event.target.files && event.target.files[0]) {
-      let reader = new FileReader();
-
-
+      const reader = new FileReader();
       reader.readAsDataURL(event.target.files[0]);
 
       this.file = event.target.files[0];
@@ -63,14 +61,10 @@ export class ImageResultComponent implements OnInit {
   }
 
   onUpload() {
-    // let reader = new FileReader();
-    // reader.readAsDataURL(file);
-
-    console.log(this.file);
     this.storageService.upload(this.file,
-      (res) => { console.log(res) },
-      (res) => { console.log(res) },
-      null);
+      (res) => { console.log(res); },
+      (err) => { console.log(err); },
+      null); // route to another page
   }
 
   ngOnInit() { }
