@@ -13,6 +13,7 @@ import { HttpModule } from '@angular/http';
 import { HomeComponent } from './home/home.component';
 import { AuthenticationService } from './services/authentication.service';
 import { StorageService } from './services/storage.service';
+import { CaptionsComponent } from './captions/captions.component';
 
 
 
@@ -25,6 +26,7 @@ import { StorageService } from './services/storage.service';
     ImageResultComponent,
     NgbdDropdownBasicComponent,
     HomeComponent,
+    CaptionsComponent,
 
   ],
   imports: [
