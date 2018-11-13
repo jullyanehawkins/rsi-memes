@@ -141,9 +141,5 @@ a, a:hover {
   bottom:0px;
   right:0px;
   height: 25%;
-  z-index: -1;
 }
 
-.search-pad {
-  padding: 1vh;
-}
