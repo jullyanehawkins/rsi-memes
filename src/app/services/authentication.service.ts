@@ -6,10 +6,6 @@ import { API } from '../api';
 
 @Injectable()
 export class AuthenticationService {
-    private SIGNUP_API = '/sign-up';
-    private LOGIN_API = '/login';
-    private API_URL = '/api';
-
     constructor(private http: HttpClient) { }
 
     /** POST: add a new user to the server */
@@ -17,9 +13,8 @@ export class AuthenticationService {
         const formData: FormData = new FormData();
         formData.append('email', email);
         formData.append('password', password);
-        console.log(API + this.API_URL  + this.SIGNUP_API);
         return this.http
-            .post(API + this.API_URL + this.SIGNUP_API, formData, { responseType: 'text' })
+            .post(API.PATH + API.SIGNUP, formData, { responseType: 'text' })
             .subscribe(onResponse, onError, onComplete);
     }
 
