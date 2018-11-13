@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ImageService } from '../image.service';
 import { Images } from '../image';
 import { StorageService } from '../services/storage.service';
@@ -15,10 +15,30 @@ export class ImageResultComponent implements OnInit {
   url = '';
   file;
   selectedFile = null;
+  // context: CanvasRenderingContext2D;
 
   constructor(private imageService: ImageService, private storageService: StorageService) { }
 
+  // @ViewChild('mycanvas') mycanvas;
 
+  // onSelectFile(e: any): void {
+  //   let canvas = this.mycanvas.nativeElement;
+  //   let context = canvas.getContext('2d');
+  //   context.clearRect(0, 0, 500, 500);
+
+  //   // show rendered image to canvas
+  //   let render = new FileReader();
+  //   render.onload = function(event) {
+  //     let img = new Image();
+  //     img.onload = function() {
+  //       canvas.width = img.width;
+  //       canvas.height = img.height;
+  //       context.drawImg(img, o, o)
+  //     };
+  //     img.src = event.target.result;
+  //   };
+  //   render.readAsDataURL(e.target.files[0]);
+  // }
   handleSuccess(response) {
     this.imagesFound = true;
     this.images = response.data.map(image => {
@@ -36,7 +56,6 @@ export class ImageResultComponent implements OnInit {
   handleError(error) {
     console.log(error);
   }
-
   onSubmit(query: string) {
     this.searching = true;
     return this.imageService

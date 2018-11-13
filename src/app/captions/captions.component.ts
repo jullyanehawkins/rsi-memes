@@ -8,97 +8,82 @@ import { pairwise, switchMap, takeUntil } from 'rxjs/operators';
   templateUrl: './captions.component.html',
   styles: ['./captions.component.css']
 })
-export class CaptionsComponent implements AfterViewInit {
+export class CaptionsComponent  implements AfterViewInit{
+memeSize: 500;
+ img = document.getElementById('start-image');
+ topText = document.getElementById('top-text');
+ bottomText = document.getElementById('bottom-text');
+@ViewChild('memeCanvas') memeCanvas: ElementRef;
 
-//   // Reference to the canvas element from our template
-//   @ViewChild('memeCanvas') public memeCanvas: ElementRef;
-//   // setting a width & height for the canvas
-//   // @Input() public width = 512;
-//   // @Input() public height = 418;
-//   memeSize: 300;
+private context: CanvasRenderingContext2D;
 
-//   private cx: CanvasRenderingContext2D;
-//   typingSubscription: Subscription;
+ngAfterViewInit() {
+  this.context = (this.memeCanvas.nativeElement as HTMLCanvasElement).getContext('2d');
+  this.drawMeme();
+}
+drawMeme() {
+  this.topText.addEventListener('keydown', this.drawMeme);
+  this.topText.addEventListener('keyup', this.drawMeme);
+  this.topText.addEventListener('change', this.drawMeme);
 
-//   img = document.getElementById('start-image');
-//   topText = document.getElementById('top-text');
-//   bottomText = document.getElementById('bottom-text');
+  this.bottomText.addEventListener('keydown', this.drawMeme);
+  this.bottomText.addEventListener('keyup', this.drawMeme);
+  this.bottomText.addEventListener('change', this.drawMeme);
 
-//   constructor() {}
+  function drawMeme() {
+    this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
-//   public ngAfterViewInit() {
-//     // get the context.
-//     const canvasEl: HTMLCanvasElement = this.memeCanvas.nativeElement;
-//     this.cx = canvasEl.getContext('2d');
+    this.context.drawImage(this.img, 0, 0, this.memeSize, this.memeSize);
 
-//     // set the width and height
-//     canvasEl.width = this.memeSize;
-//     canvasEl.height = this.memeSize;
+    this.context.lineWidth = 4;
+    this.context.font = '20pt sans-serif';
+    this.context.strokeStyle = 'black';
+    this.context.fillStyle = 'white';
+    this.context.textAlign = 'center';
+    this.context.textBaseline = 'top';
 
-//     this.img.onload = function() {
-//       drawMeme();
-//     }
+    let text1 = document.getElementById('top-text');
+    text1 = this.text1.toUpperCase();
+    const x = this.memeSize / 2;
+    const y = 0;
 
-//     this.topText.addEventListener('keydown', drawMeme),
-//     this.topText.addEventListener('keyup', drawMeme),
-//     this.topText.addEventListener('change', drawMeme);
+    wrapText(this.context, this.text1, this.x, this.y, 300, 28, false);
 
-//     this.bottomText.addEventListener('keydown', drawMeme),
-//     this.bottomText.addEventListener('keyup', drawMeme),
-//     this.bottomText.addEventListener('change', drawMeme);
+    this.context.textBaseline = 'bottom';
+    let text2 = document.getElementById('bottom-text');
+    text2 = this.text2.toUpperCase();
+    this.y = this.memeSize;
 
-//     function drawMeme() {
-//       this.cx.clearRect(0, 0, canvasEl.width, canvasEl.height);
-
-//       this.cx.drawImage(this.img, 0, 0, 300, 300);
-//       this.cx.lineWidth = 4;
-//       this.cx.font = '20pt sans-serif';
-//       this.cx.strokeStyle = 'black';
-//       this.cx.fillStyle = 'white';
-//       this.cx.textAlign = 'center';
-//       this.cx.textBaseline = 'top';
-
-//       let text1 = document.getElementById('top-text').value;
-//       text1 = text1.toUpperCase();
-//       let x = memeSize / 2;
-//       let y = 0;
-
-//       wrapText(this.cx, text1, x, y, 300, 28, false);
-
-//       this.cx.textBaseline = 'bottom';
-//       let text2 = document.getElementById('bottom-text').value;
-//       text2 = text2.toUpperCase();
-//       y = memeSize;
-
-//       wrapText(this.cx, text2, x, y, 300, 28, true);
-//     }
-//     function wrapText(context, text, x, y, maxWidth, lineHeight, fromBottom) {
-//       let pushMethod = (fromBottom) ? 'unshift' : 'push';
-
-//       lineHeight = (fromBottom) ? -lineHeight : lineHeight;
-//       let lines = [];
-//       let y = y;
-//       let line = '';
-//       let words = text.split(' ');
-
-//       for ( let n = 0; n < words.length; n++) {
-//         let testLine = line + ' ' + words[n];
-//         let metrics = context.measureText(testLine);
-//         let testWidth = metrics.width;
-
-//         if (testWidth > maxWidth) {
-//           lines[pushMethod](line);
-//           line = words[n] + ' ';
-//         } else {
-//           line = testLine;
-//         }
-//       }
-//       lines[pushMethod](line);
-//       // tslint:disable-next-line:forin
-//       for (const k in lines) {
-//         context.strokeText(lines[k], x, y + lineHeight * k);
-//         context.fillText(lines[k], x, y + lineHeight * k);
-//       }
-//     }
-//    }
+    wrapText(this.context, text2, x, y, 300, 28, true);
   }
+    function wrapText(context, text, x, y, maxWidth, lineHeight, fromBottom) {
+      const pushMethod = (fromBottom) ? 'unshift' : 'push';
+      lineHeight = (fromBottom) ? -lineHeight : lineHeight;
+
+      const lines = [];
+      const y = y;
+      let line = '';
+      const words = text.split('');
+
+      for (let n = 0; n < words.length; n++) {
+        const testLine = line + ' ' + words[n];
+        const metrics = this.context.measureText(testLine);
+        const testWidth = this.metrics.width;
+
+        if (testWidth > maxWidth) {
+          lines[pushMethod](line);
+          line = words[n] + '';
+        } else {
+          line = testLine;
+        }
+      }
+      lines[pushMethod](line);
+
+      // for ( let k in lines) {
+      //   this.context.strokeText(lines[k], x, y + lineHeight * k);
+      //  this.context.fillText(lines[k], x, y, + lineHeight * k);
+      // }
+    }
+
+}
+}
