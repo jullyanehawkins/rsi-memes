@@ -21,6 +21,7 @@ ngAfterViewInit() {
   this.context = (this.memeCanvas.nativeElement as HTMLCanvasElement).getContext('2d');
   this.drawMeme();
 }
+
 drawMeme() {
   this.topText.addEventListener('keydown', this.drawMeme);
   this.topText.addEventListener('keyup', this.drawMeme);
@@ -82,8 +83,7 @@ drawMeme() {
       // for ( let k in lines) {
       //   this.context.strokeText(lines[k], x, y + lineHeight * k);
       //  this.context.fillText(lines[k], x, y, + lineHeight * k);
-        }
+      // }
     }
-
-}
+  }
 }

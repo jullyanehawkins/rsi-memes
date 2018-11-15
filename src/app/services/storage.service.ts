@@ -8,7 +8,7 @@ import { STORAGE } from '../api';
 export class StorageService {
     constructor(private http: HttpClient) { }
 
-    /** POST: add a new user to the server */
+    /** POST: add a new image to the server */
     upload(file, onResponse: (response) => void, onError: (err) => void, onComplete: () => void): Subscription {
         const formData: FormData = new FormData();
         formData.append('file', file);
