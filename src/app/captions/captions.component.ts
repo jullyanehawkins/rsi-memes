@@ -85,5 +85,5 @@ drawMeme() {
       //  this.context.fillText(lines[k], x, y, + lineHeight * k);
       // }
     }
-  }
+}
 }
