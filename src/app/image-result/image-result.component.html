@@ -4,13 +4,16 @@
  <button (click)="onSubmit(searchQuery)" type ="button">Find images</button>
   </div>
  <div>
- <img class="uploaded-img" [src]="url" height="200">
+    <canvas #imgCanvas width="350" height="350" style="border:1px solid #000000;"></canvas>
+ <img class="uploaded-img" [src]="url">
+ <!-- height="200"> -->
  <div class="upload">
- <input type='file' class="file" (change)="onSelectFile($event)" accept="image/*">
+ <input type='file' class="file" (change)="onSelectImage($event)" accept="image/*">
  <button (click)="onUpload()">Upload</button>
- <!-- <br> -->
- <!-- <canvas #mycanvas width="500" height="500" style="border:1px solid #000000;"></canvas> -->
+ <br>
  </div>
  </div>
- <div><img *ngFor="let image of images" class="col-sm-3" src="{{image.downsized_url}}"></div>
+ <div>
+
+   <img *ngFor="let image of images" class="col-sm-3" src="{{image.downsized_url}}"></div>
  </div>

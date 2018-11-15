@@ -82,7 +82,7 @@ drawMeme() {
       // for ( let k in lines) {
       //   this.context.strokeText(lines[k], x, y + lineHeight * k);
       //  this.context.fillText(lines[k], x, y, + lineHeight * k);
-      // }
+        }
     }
 
 }

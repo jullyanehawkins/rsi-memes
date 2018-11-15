@@ -14,31 +14,37 @@ export class ImageResultComponent implements OnInit {
   searching = false;
   url = '';
   file;
-  selectedFile = null;
-  // context: CanvasRenderingContext2D;
+  selectedImage = null;
 
   constructor(private imageService: ImageService, private storageService: StorageService) { }
 
-  // @ViewChild('mycanvas') mycanvas;
+  context: CanvasRenderingContext2D;
+  @ViewChild('imgCanvas') imgCanvas;
 
-  // onSelectFile(e: any): void {
-  //   let canvas = this.mycanvas.nativeElement;
-  //   let context = canvas.getContext('2d');
-  //   context.clearRect(0, 0, 500, 500);
+  onSelectImage(e: any): void {
+    let canvas = this.imgCanvas.nativeElement;
+    let context = canvas.getContext('2d');
+    context.clearRect(200, 200, 350, 350);
 
-  //   // show rendered image to canvas
-  //   let render = new FileReader();
-  //   render.onload = function(event) {
-  //     let img = new Image();
-  //     img.onload = function() {
-  //       canvas.width = img.width;
-  //       canvas.height = img.height;
-  //       context.drawImg(img, o, o)
-  //     };
-  //     img.src = event.target.result;
-  //   };
-  //   render.readAsDataURL(e.target.files[0]);
-  // }
+    // show rendered image to canvas
+    let render = new FileReader();
+    render.onload = function(event) {
+      let img = new Image();
+      img.onload = function() {
+        canvas.width = img.width;
+        canvas.height = img.height;
+        context.drawImage(img, 0, 0);
+      };
+      img.src = event.target.result;
+    };
+    render.readAsDataURL(e.target.files[0]);
+  }
+  onUpload() {
+    this.storageService.upload(this.file,
+      (res) => { console.log(res); },
+      (err) => { console.log(err); },
+      null); // route to another page
+  }
   handleSuccess(response) {
     this.imagesFound = true;
     this.images = response.data.map(image => {
@@ -66,25 +72,20 @@ export class ImageResultComponent implements OnInit {
         () => (this.searching = false)
       );
   }
-  onSelectFile(event) {
-    if (event.target.files && event.target.files[0]) {
-      const reader = new FileReader();
-      reader.readAsDataURL(event.target.files[0]);
+  // onSelectImage(event) {
+  //   if (event.target.files && event.target.files[0]) {
+  //     const reader = new FileReader();
+  //     reader.readAsDataURL(event.target.files[0]);
 
-      this.file = event.target.files[0];
+  //     this.file = event.target.files[0];
 
-      reader.onload = event => {
-        this.url = event.target.result;
-      };
-    }
-  }
+  //     reader.onload = event => {
+  //       this.url = event.target.result;
+  //     };
+    // }
+  // }
 
-  onUpload() {
-    this.storageService.upload(this.file,
-      (res) => { console.log(res); },
-      (err) => { console.log(err); },
-      null); // route to another page
-  }
+
 
   ngOnInit() { }
 }
