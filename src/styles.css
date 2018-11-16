@@ -144,3 +144,12 @@ a, a:hover {
   z-index: -1;
 }
 
+canvas {
+  width: 400px;
+  height: auto;
+}
+
+.canvas-pad {
+  padding: 1%;
+}
+
