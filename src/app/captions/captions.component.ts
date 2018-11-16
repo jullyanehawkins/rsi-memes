@@ -30,9 +30,9 @@ drawMeme(context) {
   this.bottomText.addEventListener('change', this.drawMeme);
 
   function drawMeme() {
-    this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
+    this.context.clearRect(200, 200, this.canvas.width, this.canvas.height);
 
-    this.context.drawImage(this.img, 0, 0, this.memeSize, this.memeSize);
+    this.context.drawImage(this.img, 200, 200, this.memeSize, this.memeSize);
 
     this.context.lineWidth = 4;
     this.context.font = '20pt sans-serif';
@@ -44,7 +44,7 @@ drawMeme(context) {
     let text1 = document.getElementById('top-text');
     text1 = this.text1.toUpperCase();
     const x = this.memeSize / 2;
-    const y = 0;
+    const y = 350;
 
     wrapText(this.context, this.text1, this.x, this.y, 300, 28, false);
 
