@@ -4,8 +4,8 @@
  <button (click)="onSubmit(searchQuery)" type ="button">Find images</button>
   </div>
 
- <div>
-    <canvas #imgCanvas width="350" height="350" style="border:1px solid #000000;"></canvas>
+ <div class="canvas-pad">
+    <canvas #imgCanvas></canvas>
  <img class="uploaded-img" [src]="url">
  <!-- height="200"> -->
  <div class="upload">
