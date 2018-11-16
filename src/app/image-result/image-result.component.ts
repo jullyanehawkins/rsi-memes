@@ -36,8 +36,10 @@ export class ImageResultComponent implements OnInit {
         context.drawImage(img, 0, 0);
       };
       img.src = event.target.result;
+      console.log(e.target.files[0]);
     };
     render.readAsDataURL(e.target.files[0]);
+    this.file = e.target.files[0];
   }
   onUpload() {
     this.storageService.upload(this.file,

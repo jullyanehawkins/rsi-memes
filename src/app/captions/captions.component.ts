@@ -1,6 +1,4 @@
 import { Component, Input, ElementRef, AfterViewInit, ViewChild, OnDestroy } from '@angular/core';
-import { Subscription, fromEvent } from 'rxjs';
-import { pairwise, switchMap, takeUntil } from 'rxjs/operators';
 
 
 @Component({
@@ -18,11 +16,11 @@ memeSize: 500;
 private context: CanvasRenderingContext2D;
 
 ngAfterViewInit() {
-  this.context = (this.memeCanvas.nativeElement as HTMLCanvasElement).getContext('2d');
-  this.drawMeme();
+  const context = (this.memeCanvas.nativeElement as HTMLCanvasElement).getContext('2d');
+  this.drawMeme(context);
 }
 
-drawMeme() {
+drawMeme(context) {
   this.topText.addEventListener('keydown', this.drawMeme);
   this.topText.addEventListener('keyup', this.drawMeme);
   this.topText.addEventListener('change', this.drawMeme);
@@ -85,5 +83,6 @@ drawMeme() {
       //  this.context.fillText(lines[k], x, y, + lineHeight * k);
       // }
     }
+  }
 }
-}
+
