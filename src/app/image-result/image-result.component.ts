@@ -34,6 +34,13 @@ export class ImageResultComponent implements OnInit {
         canvas.width = img.width;
         canvas.height = img.height;
         context.drawImage(img, 0, 0);
+        context.lineWidth = 4;
+        context.font = '310pt sans-serif';
+        context.strokeStyle = 'black';
+        context.fillStyle = 'white';
+        context.textAlign = 'center';
+        context.textBaseline = 'top';
+    context.strokeText('Text', canvas.width / 2, canvas.height / 2);
       };
       img.src = event.target.result;
       console.log(e.target.files[0]);

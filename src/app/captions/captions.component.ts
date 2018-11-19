@@ -30,7 +30,7 @@ drawMeme(context) {
   this.bottomText.addEventListener('change', this.drawMeme);
 
   function drawMeme() {
-    this.context.clearRect(200, 200, this.canvas.width, this.canvas.height);
+
 
     this.context.drawImage(this.img, 200, 200, this.memeSize, this.memeSize);
 
@@ -77,11 +77,11 @@ drawMeme(context) {
         }
       }
       lines[pushMethod](line);
-
       // for ( let k in lines) {
       //   this.context.strokeText(lines[k], x, y + lineHeight * k);
       //  this.context.fillText(lines[k], x, y, + lineHeight * k);
       // }
     }
   }
+}
 }
