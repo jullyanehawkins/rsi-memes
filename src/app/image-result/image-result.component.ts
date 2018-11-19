@@ -48,8 +48,9 @@ export class ImageResultComponent implements OnInit {
     render.readAsDataURL(e.target.files[0]);
     this.file = e.target.files[0];
   }
+  
   onUpload() {
-    this.storageService.upload(this.file,
+    this.storageService.upload(this.file, 'bet',
       (res) => { console.log(res); },
       (err) => { console.log(err); },
       null); // route to another page

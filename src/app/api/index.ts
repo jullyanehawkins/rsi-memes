@@ -6,6 +6,5 @@ export const API = {
 
 export const STORAGE = {
     PATH: 'http://localhost:8080/storage',
-    UPLOAD_BLANK: '/upload-blank-meme',
-    UPLOAD_CREATED: '/upload-blank-meme',
+    UPLOAD_MEME: '/upload-meme',
 };
