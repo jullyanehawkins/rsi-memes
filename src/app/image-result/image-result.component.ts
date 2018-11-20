@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { ImageService } from '../image.service';
 import { Images } from '../image';
 import { StorageService } from '../services/storage.service';
+import { THROW_IF_NOT_FOUND } from '@angular/core/src/di/injector';
 
 @Component({
   selector: 'app-image-result',
@@ -15,7 +16,10 @@ export class ImageResultComponent implements OnInit {
   url = '';
   file;
   selectedImage = null;
-
+  tags: string;
+  topCaptions: string;
+  bottomCaptions: string;
+  canvas: any;
   constructor(private imageService: ImageService, private storageService: StorageService) { }
 
   context: CanvasRenderingContext2D;
@@ -34,15 +38,31 @@ export class ImageResultComponent implements OnInit {
         canvas.width = img.width;
         canvas.height = img.height;
         context.drawImage(img, 0, 0);
+
       };
       img.src = event.target.result;
       console.log(e.target.files[0]);
     };
     render.readAsDataURL(e.target.files[0]);
     this.file = e.target.files[0];
+    this.canvas = canvas;
+
+  }
+  updateCaptions(e) {
+    const context = this.canvas.getContext('2d');
+  context.lineWidth = 4;
+  context.font = '110pt sans-serif';
+  context.strokeStyle = 'black';
+  context.fillStyle = 'white';
+  context.textAlign = 'center';
+  context.textBaseline = 'top';
+context.strokeText(this.topCaptions, this.canvas.width / 2, this.canvas.height / 4);
+context.strokeText(this.bottomCaptions, this.canvas.width / 2, this.canvas.height * (3 / 4));
+context.clearRect(0, 0, this.canvas.width, this.canvas.height);
   }
   onUpload() {
-    this.storageService.upload(this.file,
+    console.log(this.tags);
+    this.storageService.upload(this.file, this.tags,
       (res) => { console.log(res); },
       (err) => { console.log(err); },
       null); // route to another page
@@ -74,19 +94,6 @@ export class ImageResultComponent implements OnInit {
         () => (this.searching = false)
       );
   }
-  // onSelectImage(event) {
-  //   if (event.target.files && event.target.files[0]) {
-  //     const reader = new FileReader();
-  //     reader.readAsDataURL(event.target.files[0]);
-
-  //     this.file = event.target.files[0];
-
-  //     reader.onload = event => {
-  //       this.url = event.target.result;
-  //     };
-    // }
-  // }
-
   ngOnInit() { }
 }
 

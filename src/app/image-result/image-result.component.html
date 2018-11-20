@@ -1,32 +1,38 @@
 <div class="search">
   <div class="search-pad">
- <input [(ngModel)]="searchQuery" placeholder="Search for images" (keyup.enter)="onSubmit(searchQuery)">
- <button (click)="onSubmit(searchQuery)" type ="button">Find images</button>
+    <input
+      [(ngModel)]="searchQuery"
+      placeholder="Search for images"
+      (keyup.enter)="onSubmit(searchQuery)"
+    />
+    <button (click)="onSubmit(searchQuery)" type="button">Find images</button>
   </div>
 
- <div class="canvas-pad">
-    <canvas #imgCanvas></canvas>
- <img class="uploaded-img" [src]="url">
- <!-- height="200"> -->
- <div class="upload">
- <input type='file' class="file" (change)="onSelectImage($event)" accept="image/*">
- <button (click)="onUpload()">Upload</button>
- <br>
- <br>
- </div>
- </div>
- <p>
-   <input type="text" id="top-text" />
- </p>
- <p>
-  <input type="text" id="bottom-text" />
-</p>
-<p>
-  <button id="generate-btn">Create your meme!</button>
-</p>
-<p>
-  <canvas id="meme-canvas"></canvas>
-</p>
- <div>
-   <img *ngFor="let image of images" class="col-sm-3" src="{{image.downsized_url}}"></div>
- </div>
+  <div class="canvas-pad">
+    <canvas #imgCanvas></canvas> <img class="uploaded-img" [src]="url" />
+    <!-- height="200"> -->
+    <div class="upload">
+      <input
+        type="file"
+        class="file"
+        (change)="onSelectImage($event)"
+        accept="image/*"
+      />
+      <button (click)="onUpload()">Upload</button> <br />
+      <label>Tags</label>
+      <input [(ngModel)]="tags" placeholder="enter some tags" /> <br />
+      <br />
+    </div>
+  </div>
+  <p><input [(ngModel)]="topCaptions" (ngModelChange)="updateCaptions($event)" type="text" id="top-text" /></p>
+  <p><input [(ngModel)]="bottomCaptions" (ngModelChanges)="updateCaptions($event)" type="text" id="bottom-text" /></p>
+  <p><button id="generate-btn">Create your meme!</button></p>
+  <p><canvas id="meme-canvas"></canvas></p>
+  <div>
+    <img
+      *ngFor="let image of images"
+      class="col-sm-3"
+      src="{{image.downsized_url}}"
+    />
+  </div>
+</div>
