@@ -60,7 +60,6 @@ drawMeme(context) {
       lineHeight = (fromBottom) ? -lineHeight : lineHeight;
 
       const lines = [];
-      const y = y;
       let line = '';
       const words = text.split('');
 
@@ -84,4 +83,4 @@ drawMeme(context) {
     }
   }
 }
-}
+
