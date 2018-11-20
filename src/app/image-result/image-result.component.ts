@@ -54,11 +54,11 @@ export class ImageResultComponent implements OnInit {
   context.font = '110pt sans-serif';
   context.strokeStyle = 'black';
   context.fillStyle = 'white';
-  context.textAlign = 'center';
+  context.textAlign = 'left';
   context.textBaseline = 'top';
-context.strokeText(this.topCaptions, this.canvas.width / 2, this.canvas.height / 4);
-context.strokeText(this.bottomCaptions, this.canvas.width / 2, this.canvas.height * (3 / 4));
-context.clearRect(0, 0, this.canvas.width, this.canvas.height);
+context.strokeText(this.topCaptions, 0 , 1);
+context.strokeText(this.bottomCaptions, 0, 1);
+// context.clearRect(0, 0, this.canvas.width, this.canvas.height);
   }
   onUpload() {
     console.log(this.tags);
