@@ -25,7 +25,7 @@
     </div>
   </div>
   <p><input [(ngModel)]="topCaptions" (ngModelChange)="updateCaptions($event)" type="text" id="top-text" /></p>
-  <p><input [(ngModel)]="bottomCaptions" (ngModelChanges)="updateCaptions($event)" type="text" id="bottom-text" /></p>
+  <p><input [(ngModel)]="bottomCaptions" (ngModelChange)="updateCaptions($event)" type="text" id="bottom-text" /></p>
   <p><button id="generate-btn">Create your meme!</button></p>
   <p><canvas id="meme-canvas"></canvas></p>
   <div>
