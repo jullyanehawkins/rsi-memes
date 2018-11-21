@@ -9,9 +9,17 @@ export class StorageService {
     constructor(private http: HttpClient) { }
 
     /** POST: add a new image to the server */
-    upload(file, tags: string, onResponse: (response) => void, onError: (err) => void, onComplete: () => void): Subscription {
+    uploadMeme(file, tags: string, onResponse: (response) => void, onError: (err) => void, onComplete: () => void): Subscription {
         const formData: FormData = new FormData();
         formData.append('file', file);
+        formData.append('tags', tags);
+        return this.http
+            .post(STORAGE.PATH + STORAGE.UPLOAD_MEME, formData, { responseType: 'text' })
+            .subscribe(onResponse, onError, onComplete);
+    }
+
+    pullMemes(tags: string, onResponse: (response) => void, onError: (err) => void, onComplete: () => void): Subscription {
+        const formData: FormData = new FormData();
         formData.append('tags', tags);
         return this.http
             .post(STORAGE.PATH + STORAGE.UPLOAD_MEME, formData, { responseType: 'text' })
