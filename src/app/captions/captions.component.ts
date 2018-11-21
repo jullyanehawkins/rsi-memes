@@ -6,4 +6,7 @@ import { Component } from '@angular/core';
   templateUrl: './captions.component.html',
   styles: ['./captions.component.css']
 })
-export class CaptionsComponent  {}
+export class CaptionsComponent  {
+
+}
+

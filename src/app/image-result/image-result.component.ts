@@ -26,7 +26,7 @@ export class ImageResultComponent implements OnInit {
   context: CanvasRenderingContext2D;
   @ViewChild('imgCanvas') imgCanvas;
 
-  onSelectImage(e: any): void {
+  onImageSelected(e: any): void {
     const canvas = this.imgCanvas.nativeElement;
     const context = canvas.getContext('2d');
     context.clearRect(200, 200, 350, 350);
@@ -108,7 +108,7 @@ export class ImageResultComponent implements OnInit {
   handleError(error) {
     console.log(error);
   }
-  onSubmit(query: string) {
+  searchDatabase(query: string) {
     this.searching = true;
     return this.imageService
       .getImage(query)
