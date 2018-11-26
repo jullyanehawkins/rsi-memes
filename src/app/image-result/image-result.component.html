@@ -18,12 +18,15 @@
         (change)="onSelectImage($event)"
         accept="image/*"
       />
+
       <button (click)="onUpload()">Upload</button> <br />
+      
       <label>Tags</label>
       <input [(ngModel)]="tags" placeholder="enter some tags" /> <br />
       <br />
     </div>
   </div>
+
   <p><input [(ngModel)]="topCaptions" (ngModelChange)="updateCaptions($event)" type="text" id="top-text" /></p>
   <p><input [(ngModel)]="bottomCaptions" (ngModelChange)="updateCaptions($event)" type="text" id="bottom-text" /></p>
   <p><button id="generate-btn">Create your meme!</button></p>
