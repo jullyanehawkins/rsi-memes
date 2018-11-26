@@ -65,10 +65,12 @@ export class ImageResultComponent implements OnInit {
   }
 
   onUpload() {
-    this.storageService.uploadMeme(this.file, this.tags,
-      (res) => { console.log(res); },
-      (err) => { console.log(err); },
-      null); // route to another page
+    if (this.file && this.tags) {
+      this.storageService.uploadMeme(this.file, this.tags + ' meme',
+        null,
+        (err) => { console.log(err); },
+        null); // route to another page
+    }
   }
 
   searchDatabase(query: string) {
