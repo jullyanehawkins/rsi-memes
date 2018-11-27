@@ -6,80 +6,74 @@ import { Component, Input, ElementRef, AfterViewInit, ViewChild, OnDestroy } fro
   templateUrl: './captions.component.html',
   styles: ['./captions.component.css']
 })
-export class CaptionsComponent  implements AfterViewInit{
-memeSize: 500;
- img = document.getElementById('start-image');
- topText = document.getElementById('top-text');
- bottomText = document.getElementById('bottom-text');
-@ViewChild('memeCanvas') memeCanvas: ElementRef;
+export class CaptionsComponent {
+  topCaptions: string;
+  bottomCaptions: string;
+  canvas: any;
+  origImage: any;
+  file;
 
-private context: CanvasRenderingContext2D;
+  context: CanvasRenderingContext2D;
+  @ViewChild('imgCanvas') imgCanvas;
 
-ngAfterViewInit() {
-  const context = (this.memeCanvas.nativeElement as HTMLCanvasElement).getContext('2d');
-  this.drawMeme(context);
-}
+  onSelectImage(e: any): void {
+    const canvas = this.imgCanvas.nativeElement;
+    const context = canvas.getContext('2d');
+    context.clearRect(200, 200, 350, 350);
+    const _this = this;
+    // show rendered image to canvas
+    const render = new FileReader();
+    render.onload = function (event) {
+      const img = new Image();
 
-drawMeme(context) {
-  this.topText.addEventListener('keydown', this.drawMeme);
-  this.topText.addEventListener('keyup', this.drawMeme);
-  this.topText.addEventListener('change', this.drawMeme);
+      img.onload = function () {
+        console.log('ONLOAD');
+        canvas.width = img.width;
+        canvas.height = img.height;
+        context.drawImage(img, 0, 0);
+        _this.origImage = img;
+      };
+      img.src = event.target.result;
 
-  this.bottomText.addEventListener('keydown', this.drawMeme);
-  this.bottomText.addEventListener('keyup', this.drawMeme);
-  this.bottomText.addEventListener('change', this.drawMeme);
+      console.log(e.target.files[0]);
+    };
+    render.readAsDataURL(e.target.files[0]);
+    this.file = e.target.files[0];
+    this.canvas = canvas;
 
-  function drawMeme() {
-
-
-    this.context.drawImage(this.img, 200, 200, this.memeSize, this.memeSize);
-
-    this.context.lineWidth = 4;
-    this.context.font = '20pt sans-serif';
-    this.context.strokeStyle = 'black';
-    this.context.fillStyle = 'white';
-    this.context.textAlign = 'center';
-    this.context.textBaseline = 'top';
-
-    let text1 = document.getElementById('top-text');
-    text1 = this.text1.toUpperCase();
-    const x = this.memeSize / 2;
-    const y = 350;
-
-    wrapText(this.context, this.text1, this.x, this.y, 300, 28, false);
-
-    this.context.textBaseline = 'bottom';
-    let text2 = document.getElementById('bottom-text');
-    text2 = this.text2.toUpperCase();
-    this.y = this.memeSize;
-
-    wrapText(this.context, text2, x, y, 300, 28, true);
   }
-    function wrapText(context, text, x, y, maxWidth, lineHeight, fromBottom) {
-      const pushMethod = (fromBottom) ? 'unshift' : 'push';
-      lineHeight = (fromBottom) ? -lineHeight : lineHeight;
+  updateCaptions(e) {
+    const context = this.canvas.getContext('2d');
+    context.clearRect(0, 0, this.canvas.width, this.canvas.height); // clearing canvas
+    context.drawImage(this.origImage, 0, 0); // drawing originalImage on canvas
 
-      const lines = [];
-      let line = '';
-      const words = text.split('');
+    const imageCenterX = this.canvas.width / 2; // image center
+    context.strokeStyle = 'black'; // stroke color
+    context.fillStyle = 'white'; // text color
+    context.textAlign = 'center'; // draw text centered
+    context.textBaseline = 'top'; // allign text with the top of coordinates
 
-      for (let n = 0; n < words.length; n++) {
-        const testLine = line + ' ' + words[n];
-        const metrics = this.context.measureText(testLine);
-        const testWidth = this.metrics.width;
 
-        if (testWidth > maxWidth) {
-          lines[pushMethod](line);
-          line = words[n] + '';
-        } else {
-          line = testLine;
-        }
-      }
-      lines[pushMethod](line);
-      // for ( let k in lines) {
-      //   this.context.strokeText(lines[k], x, y + lineHeight * k);
-      //  this.context.fillText(lines[k], x, y, + lineHeight * k);
-      // }
+    if (this.topCaptions) { // draw only if defined and string length > 0
+
+      // crazy formula to resize fontSize to fit text on image
+      const fontSizeTop = Math.floor(this.canvas.height / (6 + 1.8 * Math.floor(this.topCaptions.length / 4)));
+      context.font = `bold ${fontSizeTop}pt sans-serif`; // set font style for top drawing
+      context.lineWidth = fontSizeTop / 6; // text stroke line width
+      const textYTopOffset = 0.2 * fontSizeTop; // offset space from top
+      context.strokeText(this.topCaptions, imageCenterX, textYTopOffset); // draw only the outline stroke text (black)
+      context.fillText(this.topCaptions, imageCenterX, textYTopOffset); // then draw the filled text (white)
+    }
+
+
+    if (this.bottomCaptions) { // draw only if defined and string length > 0
+      // same crazy formula
+      const fontSizeBottom = Math.floor(this.canvas.height / (6 + 1.8 * Math.floor(this.bottomCaptions.length / 4)));
+      context.font = `bold ${fontSizeBottom}pt sans-serif`;
+      context.lineWidth = fontSizeBottom / 6;
+      const textBottomYOffset = this.canvas.height - 1.4 * fontSizeBottom;
+      context.strokeText(this.bottomCaptions, imageCenterX, textBottomYOffset);
+      context.fillText(this.bottomCaptions, imageCenterX, textBottomYOffset);
     }
   }
 }
