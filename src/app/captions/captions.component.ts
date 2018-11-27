@@ -1,4 +1,6 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild, OnInit } from '@angular/core';
+import { ImageService } from '../image.service';
+import { renderComponent } from '@angular/core/src/render3';
 
 
 @Component({
@@ -6,12 +8,15 @@ import { Component, ViewChild } from '@angular/core';
   templateUrl: './captions.component.html',
   styles: ['./captions.component.css']
 })
-export class CaptionsComponent {
+export class CaptionsComponent  implements OnInit {
   topCaptions: string;
   bottomCaptions: string;
   canvas: any;
   origImage: any;
   file;
+  data: any;
+
+  constructor (private imageService: ImageService) {}
 
   context: CanvasRenderingContext2D;
   @ViewChild('imgCanvas') imgCanvas;
@@ -33,6 +38,7 @@ export class CaptionsComponent {
         context.drawImage(img, 0, 0);
         _this.origImage = img;
       };
+
       img.src = event.target.result;
 
       console.log(e.target.files[0]);
@@ -53,7 +59,6 @@ export class CaptionsComponent {
     context.textAlign = 'center'; // draw text centered
     context.textBaseline = 'top'; // allign text with the top of coordinates
 
-
     if (this.topCaptions) { // draw only if defined and string length > 0
 
       // crazy formula to resize fontSize to fit text on image
@@ -65,7 +70,6 @@ export class CaptionsComponent {
       context.fillText(this.topCaptions, imageCenterX, textYTopOffset); // then draw the filled text (white)
     }
 
-
     if (this.bottomCaptions) { // draw only if defined and string length > 0
       // same crazy formula
       const fontSizeBottom = Math.floor(this.canvas.height / (6 + 1.8 * Math.floor(this.bottomCaptions.length / 4)));
@@ -75,6 +79,9 @@ export class CaptionsComponent {
       context.strokeText(this.bottomCaptions, imageCenterX, textBottomYOffset);
       context.fillText(this.bottomCaptions, imageCenterX, textBottomYOffset);
     }
+  }
+  ngOnInit() {
+    console.log(this.imageService.image);
   }
 }
 

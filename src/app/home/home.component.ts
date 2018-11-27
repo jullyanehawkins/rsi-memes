@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { StorageService } from '../services/storage.service';
 import { Router } from '@angular/router';
+import { ImageService } from '../image.service';
 
 @Component({
   selector: 'app-home',
@@ -22,6 +23,7 @@ export class HomeComponent implements OnInit {
   origImage: any;
 
    constructor(private storageService: StorageService,
+    private imageService: ImageService,
     private router: Router) { }
 
    context: CanvasRenderingContext2D;
@@ -42,6 +44,8 @@ export class HomeComponent implements OnInit {
         canvas.height = img.height;
         context.drawImage(img, 0, 0);
         _this.origImage = img;
+        _this.imageService.image = img;
+        _this.router.navigate(['/captions']);
       };
       img.src = event.target.result;
 
@@ -52,6 +56,7 @@ export class HomeComponent implements OnInit {
     this.canvas = canvas;
     // this.router.navigate(['/captions']);
   }
+
   searchDatabase(query: string) {
     if (query) {
       return this.storageService
