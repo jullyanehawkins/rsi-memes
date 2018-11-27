@@ -15,8 +15,9 @@
     <input type="file" class="file" (change)="onImageSelected($event)" accept="image/*"/>
     <button (click)="onUpload()">Upload</button> <br />
     <br/>
-    <div><label>Tags</label>
-      <input [(ngModel)]="tags" placeholder="enter some tags" /> <br />
+
+    <div><label>Tags: </label>
+      <input [(ngModel)]="tags" placeholder="Enter some tags" /> <br />
       <br />
 </div>
 

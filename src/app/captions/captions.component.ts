@@ -1,6 +1,5 @@
 import { Component, ViewChild, OnInit } from '@angular/core';
 import { ImageService } from '../image.service';
-import { renderComponent } from '@angular/core/src/render3';
 
 
 @Component({
@@ -21,7 +20,7 @@ export class CaptionsComponent  implements OnInit {
   context: CanvasRenderingContext2D;
   @ViewChild('imgCanvas') imgCanvas;
 
-  onSelectImage(e: any): void {
+  onImageSelected(e: any): void {
     const canvas = this.imgCanvas.nativeElement;
     const context = canvas.getContext('2d');
     context.clearRect(200, 200, 350, 350);
@@ -38,7 +37,6 @@ export class CaptionsComponent  implements OnInit {
         context.drawImage(img, 0, 0);
         _this.origImage = img;
       };
-
       img.src = event.target.result;
 
       console.log(e.target.files[0]);

@@ -23,6 +23,4 @@ export class ImageService {
       .get(this.URL + query)
       .pipe(map(response => <Images[]>response.json()));
   }
-
-  }
-
+}

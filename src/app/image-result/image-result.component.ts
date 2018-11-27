@@ -37,33 +37,32 @@ export class ImageResultComponent implements OnInit {
         // downsized_url: image.images.downsized.url
       };
     });
-  }
+  // }
+  // onImageSelected(e: any): void {
+  //   const canvas = this.imgCanvas.nativeElement;
+  //   const context = canvas.getContext('2d');
+  //   context.clearRect(200, 200, 350, 350);
+  //   const _this = this;
+  //   // show rendered image to canvas
+  //   const render = new FileReader();
+  //   render.onload = function(event) {
+  //     const img = new Image();
 
-  onImageSelected(e: any): void {
-    const canvas = this.imgCanvas.nativeElement;
-    const context = canvas.getContext('2d');
-    context.clearRect(200, 200, 350, 350);
-    const _this = this;
-    // show rendered image to canvas
-    const render = new FileReader();
-    render.onload = function(event) {
-      const img = new Image();
+  //     img.onload = function() {
+  //       console.log('ONLOAD');
+  //       canvas.width = img.width;
+  //       canvas.height = img.height;
+  //       context.drawImage(img, 0, 0);
+  //       _this.origImage = img;
+  //     };
+  //     img.src = event.target.result;
 
-      img.onload = function() {
-        console.log('ONLOAD');
-        canvas.width = img.width;
-        canvas.height = img.height;
-        context.drawImage(img, 0, 0);
-        _this.origImage = img;
-      };
-      img.src = event.target.result;
-
-      console.log(e.target.files[0]);
-    };
-    render.readAsDataURL(e.target.files[0]);
-    this.file = e.target.files[0];
-    this.canvas = canvas;
-  }
+  //     console.log(e.target.files[0]);
+  //   };
+  //   render.readAsDataURL(e.target.files[0]);
+  //   this.file = e.target.files[0];
+  //   this.canvas = canvas;
+  // }
   // updateCaptions(e) {
   //   const context = this.canvas.getContext('2d');
   //   context.clearRect(0, 0, this.canvas.width, this.canvas.height); // clearing canvas
@@ -95,7 +94,7 @@ export class ImageResultComponent implements OnInit {
   //     context.strokeText(this.bottomCaptions, imageCenterX, textBottomYOffset);
   //     context.fillText(this.bottomCaptions, imageCenterX, textBottomYOffset);
   //   }
-  // }
+  }
   onUpload() {
     if (this.file && this.tags) {
       this.storageService.uploadMeme(this.file, this.tags + ' meme',
