@@ -10,15 +10,12 @@
 
 <div class="upload">
   <input type="file" class="file" (change)="onImageSelected($event)" accept="image/*" />
-  <button *ngIf="imageSelected" (click)="onUpload()" #uploadButton>
-    Upload
-  </button>
-  <br />
-  <br />
 
   <div *ngIf="imageSelected">
     <label>Tags: </label>
-    <input [(ngModel)]="tags" placeholder="Enter some tags" /> <br />
-    <br />
+    <input [(ngModel)]="tags" placeholder="Enter some tags" />
+    <button *ngIf="imageSelected" (click)="onUpload()" #uploadButton>
+      Upload
+    </button>
   </div>
 </div>

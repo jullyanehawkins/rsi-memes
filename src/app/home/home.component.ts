@@ -42,7 +42,6 @@ export class HomeComponent implements OnInit {
       const img = new Image();
 
       img.onload = function() {
-        console.log('ONLOAD');
         canvas.width = img.width;
         canvas.height = img.height;
         context.drawImage(img, 0, 0);
@@ -52,7 +51,6 @@ export class HomeComponent implements OnInit {
       };
       img.src = event.target.result;
 
-      console.log(e.target.files[0]);
     };
     render.readAsDataURL(e.target.files[0]);
     this.file = e.target.files[0];
@@ -88,7 +86,6 @@ export class HomeComponent implements OnInit {
         null,
         (err) => { console.log(err); },
         () => { this.router.navigate(['/captions']); });
-
     }
     this.router.navigate(['/captions']);
   }
