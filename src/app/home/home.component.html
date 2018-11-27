@@ -1,1 +1,17 @@
-<app-image-result></app-image-result>
+<!-- <app-image-result></app-image-result> -->
+
+<div class="search">
+    <div class="search-pad">
+      <input
+        [(ngModel)]="searchQuery"
+        placeholder="Search for images"
+        (keyup.enter)="onSubmit(searchQuery)"
+      />
+      <button (click)="onSubmit(searchQuery)" type="button">Find them</button>
+    </div>
+</div>
+
+<div class="upload">
+    <input type="file" class="file" (change)="onSelectImage($event)" accept="image/*"/>
+    <button (click)="onUpload()">Upload</button> <br />
+</div>

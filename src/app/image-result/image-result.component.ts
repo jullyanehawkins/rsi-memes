@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { ImageService } from '../image.service';
 import { Images } from '../image';
 import { StorageService } from '../services/storage.service';
+import { createText } from '@angular/core/src/view/text';
 
 @Component({
   selector: 'app-image-result',
@@ -86,7 +87,7 @@ export class ImageResultComponent implements OnInit {
   }
   onUpload() {
     console.log(this.tags);
-    this.storageService.upload(this.file, this.tags,
+    this.storageService.uploadMeme(this.file, this.tags,
       (res) => { console.log(res); },
       (err) => { console.log(err); },
       null); // route to another page
