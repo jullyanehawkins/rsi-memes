@@ -5,13 +5,14 @@
       <input
         [(ngModel)]="searchQuery"
         placeholder="Search for images"
-        (keyup.enter)="onSubmit(searchQuery)"
+        (keyup.enter)="searchDatabase(searchQuery)"
       />
-      <button (click)="onSubmit(searchQuery)" type="button">Find them</button>
+      <button (click)="searchDatabase(searchQuery)" type="button">Find them</button>
     </div>
 </div>
-
+<canvas #imgCanvas></canvas><img class="uploaded-img" [src]="url" />
 <div class="upload">
-    <input type="file" class="file" (change)="onSelectImage($event)" accept="image/*"/>
+    <input type="file" class="file" (change)="onImageSelected($event)" accept="image/*"/>
     <button (click)="onUpload()">Upload</button> <br />
 </div>
+
