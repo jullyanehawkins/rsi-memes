@@ -11,6 +11,7 @@ import { ImageService } from '../image.service';
 export class HomeComponent implements OnInit {
   searchQuery: '';
   images: any[];
+  imageSelected = false;
   imagesFound = false;
   searching = false;
   url = '';
@@ -21,14 +22,16 @@ export class HomeComponent implements OnInit {
   bottomCaptions: string;
   canvas: any;
   origImage: any;
+  uploadButton;
 
-   constructor(private storageService: StorageService,
+  context: CanvasRenderingContext2D;
+  @ViewChild('imgCanvas') imgCanvas;
+
+  constructor(private storageService: StorageService,
     private imageService: ImageService,
     private router: Router) { }
 
-   context: CanvasRenderingContext2D;
-   @ViewChild('imgCanvas') imgCanvas;
-   onImageSelected(e: any): void {
+  onImageSelected(e: any): void {
     const canvas = this.imgCanvas.nativeElement;
     const context = canvas.getContext('2d');
     context.clearRect(200, 200, 350, 350);
@@ -45,7 +48,7 @@ export class HomeComponent implements OnInit {
         context.drawImage(img, 0, 0);
         _this.origImage = img;
         _this.imageService.image = img;
-        _this.router.navigate(['/captions']);
+        _this.imageSelected = true;
       };
       img.src = event.target.result;
 
@@ -54,7 +57,6 @@ export class HomeComponent implements OnInit {
     render.readAsDataURL(e.target.files[0]);
     this.file = e.target.files[0];
     this.canvas = canvas;
-    // this.router.navigate(['/captions']);
   }
 
   searchDatabase(query: string) {
@@ -79,15 +81,16 @@ export class HomeComponent implements OnInit {
       };
     });
   }
+
   onUpload() {
     if (this.file && this.tags) {
       this.storageService.uploadMeme(this.file, this.tags + ' meme',
         null,
         (err) => { console.log(err); },
-        null); // route to another page
+        () => { this.router.navigate(['/captions']); });
 
     }
     this.router.navigate(['/captions']);
   }
-   ngOnInit() {}
+  ngOnInit() { }
 }

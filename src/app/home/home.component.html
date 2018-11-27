@@ -1,24 +1,24 @@
 <!-- <app-image-result></app-image-result> -->
 
 <div class="search">
-    <div class="search-pad">
-      <input
-        [(ngModel)]="searchQuery"
-        placeholder="Search for images"
-        (keyup.enter)="searchDatabase(searchQuery)"
-      />
-      <button (click)="searchDatabase(searchQuery)" type="button">Find image</button>
-    </div>
+  <div class="search-pad">
+    <input [(ngModel)]="searchQuery" placeholder="Search for images" (keyup.enter)="searchDatabase(searchQuery)" />
+    <button (click)="searchDatabase(searchQuery)" type="button">Find image</button>
+  </div>
 </div>
 <canvas #imgCanvas></canvas><img class="uploaded-img" [src]="url" />
+
 <div class="upload">
-    <input type="file" class="file" (change)="onImageSelected($event)" accept="image/*"/>
-    <button (click)="onUpload()">Upload</button> <br />
-    <br/>
+  <input type="file" class="file" (change)="onImageSelected($event)" accept="image/*" />
+  <button *ngIf="imageSelected" (click)="onUpload()" #uploadButton>
+    Upload
+  </button>
+  <br />
+  <br />
 
-    <div><label>Tags: </label>
-      <input [(ngModel)]="tags" placeholder="Enter some tags" /> <br />
-      <br />
-</div>
-
+  <div *ngIf="imageSelected">
+    <label>Tags: </label>
+    <input [(ngModel)]="tags" placeholder="Enter some tags" /> <br />
+    <br />
+  </div>
 </div>
