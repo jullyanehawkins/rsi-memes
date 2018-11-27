@@ -12,15 +12,15 @@ html {
   box-sizing: inherit;
 }
 
-  body {
-    /* background-image: url(assets/rsi-background.jpg); */
-    background-color: #002B49;
-    background-repeat: no-repeat;
-    background-size: cover;
-    height: 100vh;
-    width: auto;
-    padding: 0;
-    margin: 0;
+body {
+  /* background-image: url(assets/rsi-background.jpg); */
+  background-color: #002B49;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100vh;
+  width: auto;
+  padding: 0;
+  margin: 0;
 }
 
 .logo-container {
@@ -115,7 +115,8 @@ button {
   font-family: 'Roboto Mono', monospace;
 }
 
-a, a:hover {
+a,
+a:hover {
   color: black;
   text-decoration: none;
 }
@@ -137,9 +138,9 @@ a, a:hover {
 } */
 
 .waves {
-  position:fixed;
-  bottom:0px;
-  right:0px;
+  position: fixed;
+  bottom: 0px;
+  right: 0px;
   height: 25%;
   z-index: -1;
 }
@@ -156,4 +157,3 @@ canvas {
 label {
   color: white;
 }
-

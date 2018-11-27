@@ -38,7 +38,7 @@ import { CaptionsComponent } from './captions/captions.component';
     HttpModule,
     AppRoutingModule,
   ],
-  providers: [ImageService, AuthenticationService, StorageService],
+  providers: [AuthenticationService, StorageService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
