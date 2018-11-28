@@ -42,7 +42,7 @@ export class ImageResultComponent implements OnInit {
   onImageSelected(e: any): void {
     const canvas = this.imgCanvas.nativeElement;
     const context = canvas.getContext('2d');
-    context.clearRect(200, 200, 350, 350);
+    context.clearRect(0, 0, canvas.width, canvas.height);
     const _this = this;
     // show rendered image to canvas
     const render = new FileReader();
