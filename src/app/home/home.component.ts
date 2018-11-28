@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { StorageService } from '../services/storage.service';
 import { Router } from '@angular/router';
-import { ImageService } from '../image.service';
+import { ImageHolderService } from '../image-holder.service';
 
 @Component({
   selector: 'app-home',
@@ -21,20 +21,20 @@ export class HomeComponent implements OnInit {
   topCaptions: string;
   bottomCaptions: string;
   canvas: any;
-  origImage: any;
-  uploadButton;
+  origImage: HTMLImageElement;
 
-  context: CanvasRenderingContext2D;
-  @ViewChild('imgCanvas') imgCanvas;
-
-  constructor(private storageService: StorageService,
-    private imageService: ImageService,
+   constructor(private storageService: StorageService,
+    private imageHolder: ImageHolderService,
     private router: Router) { }
 
-  onImageSelected(e: any): void {
-    const canvas = this.imgCanvas.nativeElement;
+   context: CanvasRenderingContext2D;
+   @ViewChild('imgCanvas') imgCanvas;
+
+   onImageSelected(e: any): void {
+    if (e.target.files.length > 0) {
+      const canvas = this.imgCanvas.nativeElement;
     const context = canvas.getContext('2d');
-    context.clearRect(200, 200, 350, 350);
+    context.clearRect(0, 0, canvas.width, canvas.height);
     const _this = this;
     // show rendered image to canvas
     const render = new FileReader();
@@ -46,7 +46,6 @@ export class HomeComponent implements OnInit {
         canvas.height = img.height;
         context.drawImage(img, 0, 0);
         _this.origImage = img;
-        _this.imageService.image = img;
         _this.imageSelected = true;
       };
       img.src = event.target.result;
@@ -55,6 +54,8 @@ export class HomeComponent implements OnInit {
     render.readAsDataURL(e.target.files[0]);
     this.file = e.target.files[0];
     this.canvas = canvas;
+    // this.router.navigate(['/captions']);
+    }
   }
 
   searchDatabase(query: string) {
@@ -67,6 +68,7 @@ export class HomeComponent implements OnInit {
           () => (this.searching = false));
     }
   }
+
   handleSuccess(response) {
     this.imagesFound = true;
     this.images = response.map(image => {
@@ -87,7 +89,8 @@ export class HomeComponent implements OnInit {
         (err) => { console.log(err); },
         () => { this.router.navigate(['/captions']); });
     }
+    this.imageHolder.keepImage(this.canvas.toDataURL());
     this.router.navigate(['/captions']);
   }
-  ngOnInit() { }
+   ngOnInit() {}
 }

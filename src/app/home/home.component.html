@@ -1,5 +1,4 @@
 <!-- <app-image-result></app-image-result> -->
-
 <div class="search">
   <div class="search-pad">
     <input [(ngModel)]="searchQuery" placeholder="Search for images" (keyup.enter)="searchDatabase(searchQuery)" />
@@ -10,12 +9,15 @@
 
 <div class="upload">
   <input type="file" class="file" (change)="onImageSelected($event)" accept="image/*" />
-
   <div *ngIf="imageSelected">
     <label>Tags: </label>
     <input [(ngModel)]="tags" placeholder="Enter some tags" />
     <button *ngIf="imageSelected" (click)="onUpload()" #uploadButton>
       Upload
     </button>
+  </div>
+
+  <div>
+    <img *ngFor="let image of images" class="col-sm-3" src="{{image.url}}" />
   </div>
 </div>
