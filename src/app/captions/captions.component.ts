@@ -1,5 +1,5 @@
 import { Component, ViewChild, OnInit } from '@angular/core';
-import { ImageService } from '../image.service';
+import { ImageHolderService } from '../image-holder.service';
 
 
 @Component({
@@ -7,20 +7,36 @@ import { ImageService } from '../image.service';
   templateUrl: './captions.component.html',
   styles: ['./captions.component.css']
 })
-export class CaptionsComponent  implements OnInit {
+export class CaptionsComponent implements OnInit {
   topCaptions: string;
   bottomCaptions: string;
   canvas: any;
-  origImage: any;
+  origImage: HTMLImageElement;
   file;
-  data: any;
 
-  constructor (private imageService: ImageService) {}
+
 
   context: CanvasRenderingContext2D;
   @ViewChild('imgCanvas') imgCanvas;
 
-  onImageSelected(e: any): void {
+  constructor(private imageHolder: ImageHolderService) { }
+
+  ngOnInit(): void {
+    const img = new Image();
+    const canvas = this.imgCanvas.nativeElement;
+    const context = canvas.getContext('2d');
+    const _this = this;
+    img.onload = function () {
+      console.log('ONLOAD');
+      canvas.width = img.width;
+      canvas.height = img.height;
+      context.drawImage(img, 0, 0);
+      _this.origImage = img;
+    };
+    img.src = this.imageHolder.getImage();
+    this.canvas = canvas;
+  }
+  onSelectImage(e: any): void {
     const canvas = this.imgCanvas.nativeElement;
     const context = canvas.getContext('2d');
     context.clearRect(200, 200, 350, 350);
@@ -78,8 +94,4 @@ export class CaptionsComponent  implements OnInit {
       context.fillText(this.bottomCaptions, imageCenterX, textBottomYOffset);
     }
   }
-  ngOnInit() {
-    console.log(this.imageService.image);
-  }
 }
-

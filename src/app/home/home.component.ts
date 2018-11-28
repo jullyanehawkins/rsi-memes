@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { StorageService } from '../services/storage.service';
 import { Router } from '@angular/router';
-import { ImageService } from '../image.service';
+import { ImageHolderService } from '../image-holder.service';
 
 @Component({
   selector: 'app-home',
@@ -21,17 +21,16 @@ export class HomeComponent implements OnInit {
   topCaptions: string;
   bottomCaptions: string;
   canvas: any;
-  origImage: any;
-  uploadButton;
+  origImage: HTMLImageElement;
 
-  context: CanvasRenderingContext2D;
-  @ViewChild('imgCanvas') imgCanvas;
-
-  constructor(private storageService: StorageService,
-    private imageService: ImageService,
+   constructor(private storageService: StorageService,
+    private imageHolder: ImageHolderService,
     private router: Router) { }
 
-  onImageSelected(e: any): void {
+   context: CanvasRenderingContext2D;
+   @ViewChild('imgCanvas') imgCanvas;
+
+   onImageSelected(e: any): void {
     const canvas = this.imgCanvas.nativeElement;
     const context = canvas.getContext('2d');
     context.clearRect(200, 200, 350, 350);
@@ -46,7 +45,6 @@ export class HomeComponent implements OnInit {
         canvas.height = img.height;
         context.drawImage(img, 0, 0);
         _this.origImage = img;
-        _this.imageService.image = img;
         _this.imageSelected = true;
       };
       img.src = event.target.result;
@@ -87,7 +85,8 @@ export class HomeComponent implements OnInit {
         (err) => { console.log(err); },
         () => { this.router.navigate(['/captions']); });
     }
+    this.imageHolder.keepImage(this.canvas.toDataURL());
     this.router.navigate(['/captions']);
   }
-  ngOnInit() { }
+   ngOnInit() {}
 }

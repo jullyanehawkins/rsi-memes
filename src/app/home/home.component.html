@@ -9,13 +9,15 @@
 <canvas #imgCanvas></canvas><img class="uploaded-img" [src]="url" />
 
 <div class="upload">
-  <input type="file" class="file" (change)="onImageSelected($event)" accept="image/*" />
-
-  <div *ngIf="imageSelected">
-    <label>Tags: </label>
-    <input [(ngModel)]="tags" placeholder="Enter some tags" />
-    <button *ngIf="imageSelected" (click)="onUpload()" #uploadButton>
-      Upload
-    </button>
-  </div>
+    <input type="file" class="file" (change)="onImageSelected($event)" accept="image/*"/>
+    <div *ngIf="imageSelected">
+      <label>Tags: </label>
+      <input [(ngModel)]="tags" placeholder="Enter some tags" />
+      <button *ngIf="imageSelected" (click)="onUpload()" #uploadButton>
+        Upload
+      </button>
+    </div>
 </div>
+
+
+

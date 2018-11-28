@@ -1,18 +1,9 @@
 <div class="canvas-pad">
-    <canvas #imgCanvas></canvas> <img class="uploaded-img" [src]="url" />
-    <!-- <div class="upload">
-    <input type="file" class="file" (change)="onSelectImage($event)" accept="image/*"/> -->
-      <!-- <button (click)="onUpload()">Upload</button> <br /> --> -->
-<!--
-      <label>Tags</label>
-      <input [(ngModel)]="tags" placeholder="enter some tags" /> <br />
-      <br /> -->
-    </div>
-
+  <canvas #imgCanvas></canvas>
 <div>
-  <p><input [(ngModel)]="topCaptions" (ngModelChange)="updateCaptions($event)" type="text" id="top-text" placeholder="Top text" /></p>
-  <p><input [(ngModel)]="bottomCaptions" (ngModelChange)="updateCaptions($event)" type="text" id="bottom-text" placeholder="Bottom text" /></p>
-  <p><button id="generate-btn">Create your meme!</button></p>
+<p><input [(ngModel)]="topCaptions" (ngModelChange)="updateCaptions($event)" type="text" id="top-text" placeholder="Top text" /></p>
+<p><input [(ngModel)]="bottomCaptions" (ngModelChange)="updateCaptions($event)" type="text" id="bottom-text" placeholder="Bottom text" /></p>
+<p><button id="generate-btn">Create your meme!</button></p>
 </div>
 
-<!-- </div> -->
+</div>
