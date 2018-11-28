@@ -60,6 +60,21 @@ export class CaptionsComponent implements OnInit {
     this.canvas = canvas;
 
   }
+  imageClicked(e: any): void {
+    const img = new Image();
+    const canvas = this.imgCanvas.nativeElement;
+    const context = canvas.getContext('2d');
+    const _this = this;
+    img.onload = function() {
+      console.log('ONLOAD');
+      canvas.width = img.width;
+      canvas.height = img.height;
+      context.drawImage(img, 0, 0);
+      _this.origImage = img;
+    };
+    img.src = this.imageHolder.getImage();
+    this.canvas = canvas;
+  }
   updateCaptions(e) {
     const context = this.canvas.getContext('2d');
     context.clearRect(0, 0, this.canvas.width, this.canvas.height); // clearing canvas

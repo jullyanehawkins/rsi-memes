@@ -81,7 +81,6 @@ export class HomeComponent implements OnInit {
       };
     });
   }
-
   onUpload() {
     if (this.file && this.tags) {
       this.storageService.uploadMeme(this.file, this.tags + ' meme',
@@ -92,5 +91,8 @@ export class HomeComponent implements OnInit {
     this.imageHolder.keepImage(this.canvas.toDataURL());
     this.router.navigate(['/captions']);
   }
+imageClicked() {
+  this.router.navigate(['/captions']);
+}
    ngOnInit() {}
 }
