@@ -14,6 +14,7 @@ import { HomeComponent } from './home/home.component';
 import { AuthenticationService } from './services/authentication.service';
 import { StorageService } from './services/storage.service';
 import { CaptionsComponent } from './captions/captions.component';
+import { ImageHolderService } from './image-holder.service';
 
 
 
@@ -38,7 +39,7 @@ import { CaptionsComponent } from './captions/captions.component';
     HttpModule,
     AppRoutingModule,
   ],
-  providers: [AuthenticationService, StorageService],
+  providers: [AuthenticationService, StorageService, ImageHolderService, ImageService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
