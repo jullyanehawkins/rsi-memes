@@ -1,7 +1,5 @@
 import { Component, ViewChild, OnInit } from '@angular/core';
 import { ImageHolderService } from '../image-holder.service';
-import { generate } from 'rxjs';
-import { registerContentQuery } from '@angular/core/src/render3/instructions';
 
 
 @Component({

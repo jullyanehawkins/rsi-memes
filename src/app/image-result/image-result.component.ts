@@ -37,16 +37,17 @@ export class ImageResultComponent implements OnInit {
         // downsized_url: image.images.downsized.url
       };
     });
-  // }
-  // onImageSelected(e: any): void {
-  //   const canvas = this.imgCanvas.nativeElement;
-  //   const context = canvas.getContext('2d');
-  //   context.clearRect(200, 200, 350, 350);
-  //   const _this = this;
-  //   // show rendered image to canvas
-  //   const render = new FileReader();
-  //   render.onload = function(event) {
-  //     const img = new Image();
+  }
+
+  onImageSelected(e: any): void {
+    const canvas = this.imgCanvas.nativeElement;
+    const context = canvas.getContext('2d');
+    context.clearRect(0, 0, canvas.width, canvas.height);
+    const _this = this;
+    // show rendered image to canvas
+    const render = new FileReader();
+    render.onload = function(event) {
+      const img = new Image();
 
   //     img.onload = function() {
   //       console.log('ONLOAD');
@@ -93,7 +94,7 @@ export class ImageResultComponent implements OnInit {
   //     const textBottomYOffset = this.canvas.height - 1.4 * fontSizeBottom;
   //     context.strokeText(this.bottomCaptions, imageCenterX, textBottomYOffset);
   //     context.fillText(this.bottomCaptions, imageCenterX, textBottomYOffset);
-  //   }
+    };
   }
   onUpload() {
     if (this.file && this.tags) {

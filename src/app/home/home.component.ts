@@ -31,9 +31,10 @@ export class HomeComponent implements OnInit {
    @ViewChild('imgCanvas') imgCanvas;
 
    onImageSelected(e: any): void {
-    const canvas = this.imgCanvas.nativeElement;
+    if (e.target.files.length > 0) {
+      const canvas = this.imgCanvas.nativeElement;
     const context = canvas.getContext('2d');
-    context.clearRect(200, 200, 350, 350);
+    context.clearRect(0, 0, canvas.width, canvas.height);
     const _this = this;
     // show rendered image to canvas
     const render = new FileReader();
@@ -53,6 +54,9 @@ export class HomeComponent implements OnInit {
     render.readAsDataURL(e.target.files[0]);
     this.file = e.target.files[0];
     this.canvas = canvas;
+    // this.router.navigate(['/captions']);
+    }
+
   }
 
   searchDatabase(query: string) {
