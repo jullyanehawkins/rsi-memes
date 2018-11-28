@@ -42,7 +42,7 @@ export class HomeComponent implements OnInit {
 
         const img = new Image();
         img.onload = function() {
-          this.imageSelected = true;
+          _this.imageSelected = true;
           canvas.width = img.width;
           canvas.height = img.height;
           context.drawImage(img, 0, 0);
@@ -77,7 +77,6 @@ export class HomeComponent implements OnInit {
       };
     });
   }
-
   onUpload() {
     if (this.file && this.tags) {
       this.storageService.uploadMeme(this.file, this.tags + ' meme',
