@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { StorageService } from '../services/storage.service';
 import { Router } from '@angular/router';
+import { ImageHolderService } from '../image-holder.service';
 
 @Component({
   selector: 'app-home',
@@ -10,6 +11,7 @@ import { Router } from '@angular/router';
 export class HomeComponent implements OnInit {
   searchQuery: '';
   images: any[];
+  imageSelected = false;
   imagesFound = false;
   searching = false;
   url = '';
@@ -19,13 +21,15 @@ export class HomeComponent implements OnInit {
   topCaptions: string;
   bottomCaptions: string;
   canvas: any;
-  origImage: any;
+  origImage: HTMLImageElement;
 
    constructor(private storageService: StorageService,
+    private imageHolder: ImageHolderService,
     private router: Router) { }
 
    context: CanvasRenderingContext2D;
    @ViewChild('imgCanvas') imgCanvas;
+
    onImageSelected(e: any): void {
     const canvas = this.imgCanvas.nativeElement;
     const context = canvas.getContext('2d');
@@ -42,6 +46,7 @@ export class HomeComponent implements OnInit {
         canvas.height = img.height;
         context.drawImage(img, 0, 0);
         _this.origImage = img;
+        _this.imageSelected = true;
       };
       img.src = event.target.result;
 
@@ -82,6 +87,7 @@ export class HomeComponent implements OnInit {
         null); // route to another page
 
     }
+    this.imageHolder.keepImage(this.canvas.toDataURL());
     this.router.navigate(['/captions']);
   }
    ngOnInit() {}

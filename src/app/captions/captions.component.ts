@@ -1,4 +1,5 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild, OnInit } from '@angular/core';
+import { ImageHolderService } from '../image-holder.service';
 
 
 @Component({
@@ -6,15 +7,33 @@ import { Component, ViewChild } from '@angular/core';
   templateUrl: './captions.component.html',
   styles: ['./captions.component.css']
 })
-export class CaptionsComponent {
+export class CaptionsComponent implements OnInit {
   topCaptions: string;
   bottomCaptions: string;
   canvas: any;
-  origImage: any;
+  origImage: HTMLImageElement;
   file;
 
   context: CanvasRenderingContext2D;
   @ViewChild('imgCanvas') imgCanvas;
+
+  constructor(private imageHolder: ImageHolderService) { }
+
+  ngOnInit(): void {
+    const img = new Image();
+    const canvas = this.imgCanvas.nativeElement;
+    const context = canvas.getContext('2d');
+    const _this = this;
+    img.onload = function () {
+      console.log('ONLOAD');
+      canvas.width = img.width;
+      canvas.height = img.height;
+      context.drawImage(img, 0, 0);
+      _this.origImage = img;
+    };
+    img.src = this.imageHolder.getImage();
+    this.canvas = canvas;
+  }
 
   onSelectImage(e: any): void {
     const canvas = this.imgCanvas.nativeElement;
@@ -77,4 +96,3 @@ export class CaptionsComponent {
     }
   }
 }
-
