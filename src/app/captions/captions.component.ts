@@ -1,5 +1,7 @@
 import { Component, ViewChild, OnInit } from '@angular/core';
 import { ImageHolderService } from '../image-holder.service';
+import { generate } from 'rxjs';
+import { registerContentQuery } from '@angular/core/src/render3/instructions';
 
 
 @Component({
@@ -13,8 +15,6 @@ export class CaptionsComponent implements OnInit {
   canvas: any;
   origImage: HTMLImageElement;
   file;
-
-
 
   context: CanvasRenderingContext2D;
   @ViewChild('imgCanvas') imgCanvas;
@@ -93,5 +93,17 @@ export class CaptionsComponent implements OnInit {
       context.strokeText(this.bottomCaptions, imageCenterX, textBottomYOffset);
       context.fillText(this.bottomCaptions, imageCenterX, textBottomYOffset);
     }
-  }
-}
+    const canvas = document.getElementById('imgCanvas');
+
+    canvas.toBlob(function(blob) {
+      const newImg = document.createElement('img'),
+      url = URL.createObjectURL(blob);
+
+      newImg.onload = function() {
+        URL.revokeObjectURL(url);
+      };
+      newImg.src = url;
+      document.body.appendChild(newImg);
+    });
+    }
+    }
