@@ -13,7 +13,6 @@ export class CaptionsComponent implements OnInit {
   canvas: any;
   origImage: HTMLImageElement;
   file;
-  data: any;
 
   context: CanvasRenderingContext2D;
   @ViewChild('imgCanvas') imgCanvas;
@@ -25,7 +24,7 @@ export class CaptionsComponent implements OnInit {
     const canvas = this.imgCanvas.nativeElement;
     const context = canvas.getContext('2d');
     const _this = this;
-    img.onload = function () {
+    img.onload = function() {
       console.log('ONLOAD');
       canvas.width = img.width;
       canvas.height = img.height;
@@ -35,7 +34,6 @@ export class CaptionsComponent implements OnInit {
     img.src = this.imageHolder.getImage();
     this.canvas = canvas;
   }
-
   onSelectImage(e: any): void {
     const canvas = this.imgCanvas.nativeElement;
     const context = canvas.getContext('2d');
@@ -43,10 +41,10 @@ export class CaptionsComponent implements OnInit {
     const _this = this;
     // show rendered image to canvas
     const render = new FileReader();
-    render.onload = function (event) {
+    render.onload = function(event) {
       const img = new Image();
 
-      img.onload = function () {
+      img.onload = function() {
         console.log('ONLOAD');
         canvas.width = img.width;
         canvas.height = img.height;
@@ -93,5 +91,17 @@ export class CaptionsComponent implements OnInit {
       context.strokeText(this.bottomCaptions, imageCenterX, textBottomYOffset);
       context.fillText(this.bottomCaptions, imageCenterX, textBottomYOffset);
     }
+    const canvas = document.getElementById('imgCanvas');
+
+    canvas.toBlob(function(blob) {
+      const newImg = document.createElement('img'),
+        url = URL.createObjectURL(blob);
+
+      newImg.onload = function() {
+        URL.revokeObjectURL(url);
+      };
+      newImg.src = url;
+      document.body.appendChild(newImg);
+    });
   }
 }
