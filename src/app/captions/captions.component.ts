@@ -106,9 +106,8 @@ export class CaptionsComponent implements OnInit {
       context.strokeText(this.bottomCaptions, imageCenterX, textBottomYOffset);
       context.fillText(this.bottomCaptions, imageCenterX, textBottomYOffset);
     }
-    const canvas = document.getElementById('imgCanvas');
 
-    canvas.toBlob(function(blob) {
+    this.canvas.toBlob(function(blob) {
       const newImg = document.createElement('img'),
         url = URL.createObjectURL(blob);
 

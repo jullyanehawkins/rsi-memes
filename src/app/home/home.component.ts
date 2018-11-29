@@ -32,19 +32,18 @@ export class HomeComponent implements OnInit {
 
   onImageSelected(e: any): void {
     if (e.target.files.length > 0) {
-      const canvas = this.imgCanvas.nativeElement;
-      const context = canvas.getContext('2d');
-      context.clearRect(0, 0, canvas.width, canvas.height);
+      this.canvas = this.imgCanvas.nativeElement;
+      const context = this.canvas.getContext('2d');
+      context.clearRect(0, 0, this.canvas.width, this.canvas.height);
       const _this = this;
       // show rendered image to canvas
       const render = new FileReader();
       render.onload = function(event) {
-
         const img = new Image();
         img.onload = function() {
           _this.imageSelected = true;
-          canvas.width = img.width;
-          canvas.height = img.height;
+          _this.canvas.width = img.width;
+          _this.canvas.height = img.height;
           context.drawImage(img, 0, 0);
           _this.origImage = img;
         };
