@@ -6,8 +6,11 @@
   </div>
 </div>
 
-<canvas #imgCanvas> <!-- *ngIf="imageSelected" > -->
-  <img class="uploaded-img" [src]="url"/>
+<br *ngIf="!imageSelected">
+<h3 class="option-text" *ngIf="!imageSelected"> OR </h3>
+
+<canvas class="uploaded-img" *ngIf="imageSelected" #imgCanvas>
+  <img [src]="url" />
 </canvas>
 
 <div class="upload">
@@ -19,8 +22,10 @@
       Upload
     </button>
   </div>
+
   <br>
   <br>
+
   <div>
     <img *ngFor="let image of images" (click)="onImageClicked(image)" class="col-sm-3" src="{{image.url}}" />
   </div>

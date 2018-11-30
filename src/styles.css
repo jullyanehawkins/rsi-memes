@@ -27,6 +27,10 @@ body {
   padding: 2vh;
 }
 
+.logo-container:hover {
+  cursor: pointer;
+}
+
 .logo {
   position: relative;
   height: 110px;
@@ -129,13 +133,13 @@ a:hover {
   bottom: 10vh;
 }
 
-/* .uploaded-img {
+.uploaded-img {
   padding: 2vh;
   text-align: center;
   margin: 30px auto;
   align-self: center;
   display: flex;
-} */
+}
 
 .waves {
   position: fixed;
@@ -155,5 +159,10 @@ canvas {
 }
 
 label {
+  color: white;
+}
+
+.option-text {
+  text-align: center;
   color: white;
 }
