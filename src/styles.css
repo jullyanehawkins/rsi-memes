@@ -100,7 +100,7 @@ body {
 .search {
   width: 100%;
   clear: both;
-  padding: 0.5vh;
+  padding: 1vh;
   text-align: center;
   font-family: 'Roboto Mono', monospace;
 }
