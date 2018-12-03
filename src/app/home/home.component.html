@@ -18,6 +18,6 @@
   </div>
 
   <div>
-    <img *ngFor="let image of images" class="col-sm-3" src="{{image.url}}" (click)="imageClicked()" />
+    <img id="results" *ngFor="let image of images" class="col-sm-3" src="{{image.url}}" (click)="imageClicked()" />
   </div>
 </div>

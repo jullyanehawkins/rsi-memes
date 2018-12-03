@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { StorageService } from '../services/storage.service';
 import { Router } from '@angular/router';
 import { ImageHolderService } from '../image-holder.service';
+import { Images } from '../image';
 
 @Component({
   selector: 'app-home',
@@ -14,6 +15,7 @@ export class HomeComponent implements OnInit {
   imageSelected = false;
   imagesFound = false;
   searching = false;
+  clickedImage = false;
   url = '';
   file;
   selectedImage = null;
@@ -54,7 +56,6 @@ export class HomeComponent implements OnInit {
     render.readAsDataURL(e.target.files[0]);
     this.file = e.target.files[0];
     this.canvas = canvas;
-    // this.router.navigate(['/captions']);
     }
   }
 
@@ -94,5 +95,6 @@ export class HomeComponent implements OnInit {
 imageClicked() {
   this.router.navigate(['/captions']);
 }
+
    ngOnInit() {}
 }
