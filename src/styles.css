@@ -166,3 +166,7 @@ label {
   color: white;
   margin-bottom: 0;
 }
+
+.top-caption, .bottom-caption {
+  text-align: center;
+}

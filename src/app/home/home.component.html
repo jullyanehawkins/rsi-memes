@@ -16,6 +16,7 @@
 <div class="upload">
   <input type="file" class="file" (change)="onImageSelected($event)" accept="image/*" />
   <div *ngIf="imageSelected">
+    <br>
     <label>Tags: </label>
     <input [(ngModel)]="tags" (keyup.enter)="onUpload()" placeholder="Enter some tags" />
     <button (click)="onUpload()" #uploadButton>
