@@ -34,32 +34,32 @@ export class CaptionsComponent implements OnInit {
     img.src = this.imageHolder.getImage();
     this.canvas = canvas;
   }
-  onSelectImage(e: any): void {
-    const canvas = this.imgCanvas.nativeElement;
-    const context = canvas.getContext('2d');
-    context.clearRect(200, 200, 350, 350);
-    const _this = this;
-    // show rendered image to canvas
-    const render = new FileReader();
-    render.onload = function(event) {
-      const img = new Image();
+  // onSelectImage(e: any): void {
+  //   const canvas = this.imgCanvas.nativeElement;
+  //   const context = canvas.getContext('2d');
+  //   context.clearRect(200, 200, 350, 350);
+  //   const _this = this;
+  //   // show rendered image to canvas
+  //   const render = new FileReader();
+  //   render.onload = function(event) {
+  //     const img = new Image();
 
-      img.onload = function() {
-        console.log('ONLOAD');
-        canvas.width = img.width;
-        canvas.height = img.height;
-        context.drawImage(img, 0, 0);
-        _this.origImage = img;
-      };
-      img.src = event.target.result;
+  //     img.onload = function() {
+  //       console.log('ONLOAD');
+  //       canvas.width = img.width;
+  //       canvas.height = img.height;
+  //       context.drawImage(img, 0, 0);
+  //       _this.origImage = img;
+  //     };
+  //     img.src = event.target.result;
 
-      console.log(e.target.files[0]);
-    };
-    render.readAsDataURL(e.target.files[0]);
-    this.file = e.target.files[0];
-    this.canvas = canvas;
+  //     console.log(e.target.files[0]);
+  //   };
+  //   render.readAsDataURL(e.target.files[0]);
+  //   this.file = e.target.files[0];
+  //   this.canvas = canvas;
 
-  }
+  // }
   imageClicked(e: any): void {
     const img = new Image();
     const canvas = this.imgCanvas.nativeElement;
