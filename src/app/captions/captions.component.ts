@@ -1,5 +1,6 @@
 import { Component, ViewChild, OnInit } from '@angular/core';
 import { ImageHolderService } from '../image-holder.service';
+import { Images } from '../image';
 
 
 @Component({
@@ -13,6 +14,7 @@ export class CaptionsComponent implements OnInit {
   canvas: any;
   origImage: HTMLImageElement;
   file;
+  imageClicked: HTMLImageElement;
 
   context: CanvasRenderingContext2D;
   @ViewChild('imgCanvas') imgCanvas;
@@ -30,8 +32,10 @@ export class CaptionsComponent implements OnInit {
       canvas.height = img.height;
       context.drawImage(img, 0, 0);
       _this.origImage = img;
+
     };
     img.src = this.imageHolder.getImage();
+    console.log(this.imageHolder.getImage());
     this.canvas = canvas;
   }
   // onSelectImage(e: any): void {

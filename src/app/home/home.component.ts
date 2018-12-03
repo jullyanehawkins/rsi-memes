@@ -3,6 +3,7 @@ import { StorageService } from '../services/storage.service';
 import { Router } from '@angular/router';
 import { ImageHolderService } from '../image-holder.service';
 import { Images } from '../image';
+import { renderComponent } from '@angular/core/src/render3';
 
 @Component({
   selector: 'app-home',
@@ -58,6 +59,10 @@ export class HomeComponent implements OnInit {
     this.canvas = canvas;
     }
   }
+  imageClicked(e: any) {
+    this.imageHolder.keepImage(e.target.src);
+    this.router.navigate(['/captions']);
+  }
 
   searchDatabase(query: string) {
     if (query) {
@@ -92,9 +97,7 @@ export class HomeComponent implements OnInit {
     this.imageHolder.keepImage(this.canvas.toDataURL());
     this.router.navigate(['/captions']);
   }
-imageClicked() {
-  this.router.navigate(['/captions']);
-}
+
 
    ngOnInit() {}
 }
