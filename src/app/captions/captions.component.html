@@ -4,7 +4,6 @@
     <p><input [(ngModel)]="topCaptions" (ngModelChange)="updateCaptions($event)" type="text" id="top-text" placeholder="Top text" /></p>
     <p><input [(ngModel)]="bottomCaptions" (ngModelChange)="updateCaptions($event)" type="text" id="bottom-text"
         placeholder="Bottom text" /></p>
-    <a href="#" class="button" id="generate-btn"><button>Create your meme!</button></a>
+        <a [href]="imgData" download="meme.png"><button id="generate-btn" (click)="updateImg()">Create your meme!</button></a>  
   </div>
-
 </div>

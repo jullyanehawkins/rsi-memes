@@ -1,5 +1,6 @@
 import { Component, ViewChild, OnInit } from '@angular/core';
 import { ImageHolderService } from '../image-holder.service';
+import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 
 
 @Component({
@@ -12,12 +13,13 @@ export class CaptionsComponent implements OnInit {
   bottomCaptions: string;
   canvas: any;
   origImage: HTMLImageElement;
+  imgData: SafeUrl;
   file;
 
   context: CanvasRenderingContext2D;
   @ViewChild('imgCanvas') imgCanvas;
 
-  constructor(private imageHolder: ImageHolderService) { }
+  constructor(private imageHolder: ImageHolderService, private domSanitizer: DomSanitizer) { }
 
   ngOnInit(): void {
     const img = new Image();
@@ -37,7 +39,7 @@ export class CaptionsComponent implements OnInit {
   onSelectImage(e: any): void {
     const canvas = this.imgCanvas.nativeElement;
     const context = canvas.getContext('2d');
-    context.clearRect(200, 200, 350, 350);
+    context.clearRect(0, 0, canvas.width, canvas.height);
     const _this = this;
     // show rendered image to canvas
     const render = new FileReader();
@@ -106,17 +108,21 @@ export class CaptionsComponent implements OnInit {
       context.strokeText(this.bottomCaptions, imageCenterX, textBottomYOffset);
       context.fillText(this.bottomCaptions, imageCenterX, textBottomYOffset);
     }
-    const canvas = document.getElementById('imgCanvas');
+    // const canvas = document.getElementById('imgCanvas');
 
-    canvas.toBlob(function(blob) {
-      const newImg = document.createElement('img'),
-        url = URL.createObjectURL(blob);
+    // canvas.toBlob(function(blob) {
+    //   const newImg = document.createElement('img'),
+    //     url = URL.createObjectURL(blob);
 
-      newImg.onload = function() {
-        URL.revokeObjectURL(url);
-      };
-      newImg.src = url;
-      document.body.appendChild(newImg);
-    });
+    //   newImg.onload = function() {
+    //     URL.revokeObjectURL(url);
+    //   };
+    //   newImg.src = url;
+    //   document.body.appendChild(newImg);
+    // });
+  }
+  updateImg() {
+    console.log('DOWNLOAD');
+    this.imgData = this.canvas.toDataURL('image/png');
   }
 }
