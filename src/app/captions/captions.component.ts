@@ -36,32 +36,8 @@ export class CaptionsComponent implements OnInit {
     img.src = this.imageHolder.getImage();
     this.canvas = canvas;
   }
-  onSelectImage(e: any): void {
-    const canvas = this.imgCanvas.nativeElement;
-    const context = canvas.getContext('2d');
-    context.clearRect(0, 0, canvas.width, canvas.height);
-    const _this = this;
-    // show rendered image to canvas
-    const render = new FileReader();
-    render.onload = function(event) {
-      const img = new Image();
 
-      img.onload = function() {
-        console.log('ONLOAD');
-        canvas.width = img.width;
-        canvas.height = img.height;
-        context.drawImage(img, 0, 0);
-        _this.origImage = img;
-      };
-      img.src = event.target.result;
-
-      console.log(e.target.files[0]);
-    };
-    render.readAsDataURL(e.target.files[0]);
-    this.file = e.target.files[0];
-    this.canvas = canvas;
-
-  }
+  
   imageClicked(e: any): void {
     const img = new Image();
     const canvas = this.imgCanvas.nativeElement;
@@ -108,19 +84,14 @@ export class CaptionsComponent implements OnInit {
       context.strokeText(this.bottomCaptions, imageCenterX, textBottomYOffset);
       context.fillText(this.bottomCaptions, imageCenterX, textBottomYOffset);
     }
-    // const canvas = document.getElementById('imgCanvas');
 
-    // canvas.toBlob(function(blob) {
+    // this.canvas.toBlob(function(blob) {
     //   const newImg = document.createElement('img'),
     //     url = URL.createObjectURL(blob);
-
-    //   newImg.onload = function() {
-    //     URL.revokeObjectURL(url);
-    //   };
-    //   newImg.src = url;
-    //   document.body.appendChild(newImg);
-    // });
+    // }
   }
+
+
   updateImg() {
     console.log('DOWNLOAD');
     this.imgData = this.canvas.toDataURL('image/png');
