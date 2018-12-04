@@ -21,6 +21,7 @@ import { Images } from '../image';
     private tags: string;
     private canvas: any;
     private imgCanvas: ElementRef;
+    public searching: boolean;
     @ViewChild('imgCanvas') set imageCanvas(imgCanvas: ElementRef) {
     if (imgCanvas) {
     this.imgCanvas = imgCanvas;
@@ -34,7 +35,6 @@ import { Images } from '../image';
   ) {}
 
   context: CanvasRenderingContext2D;
-  @ViewChild('imgCanvas') imgCanvas;
 
   onImageSelected(e: any): void {
     if (e.target.files.length === 1) {
