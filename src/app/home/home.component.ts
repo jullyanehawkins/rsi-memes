@@ -101,7 +101,7 @@ export class HomeComponent implements OnInit {
         _this.selectedImg = img;
       };
       img.src = event.target.result;
-      console.log(img.src);
+      // console.log(img.src);
     };
     reader.readAsDataURL(this.selectedImg);
   }

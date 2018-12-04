@@ -27,14 +27,14 @@ export class CaptionsComponent implements OnInit {
     const context = canvas.getContext('2d');
     const _this = this;
     img.onload = function() {
-      console.log('ONLOAD');
+      // console.log('ONLOAD');
       canvas.width = img.width;
       canvas.height = img.height;
       context.drawImage(img, 0, 0);
       _this.origImage = img;
     };
     img.src = this.imageHolder.getImage();
-    console.log(this.imageHolder.getImage());
+    // console.log(this.imageHolder.getImage());
     this.canvas = canvas;
   }
   updateCaptions(e) {
@@ -77,7 +77,7 @@ export class CaptionsComponent implements OnInit {
     }
   }
     updateImg() {
-      console.log('DOWNLOAD');
+      // console.log('DOWNLOAD');
       this.imgData = this.canvas.toDataURL('image/png');
     }
 }
