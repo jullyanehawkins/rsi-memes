@@ -1,5 +1,6 @@
 import { Component, ViewChild, OnInit } from '@angular/core';
 import { ImageHolderService } from '../image-holder.service';
+import { SafeUrl } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-captions',
@@ -13,7 +14,7 @@ export class CaptionsComponent implements OnInit {
   origImage: HTMLImageElement;
   file;
   imageClicked: HTMLImageElement;
-
+  imgData: SafeUrl;
   context: CanvasRenderingContext2D;
   @ViewChild('imgCanvas') imgCanvas;
 
@@ -74,4 +75,8 @@ export class CaptionsComponent implements OnInit {
       context.fillText(this.bottomCaptions, imageCenterX, textBottomYOffset);
     }
   }
+    updateImg() {
+      console.log('DOWNLOAD');
+      this.imgData = this.canvas.toDataURL('image/png');
+    }
 }
