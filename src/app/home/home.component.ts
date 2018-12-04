@@ -1,7 +1,8 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { StorageService } from '../services/storage.service';
 import { Router } from '@angular/router';
 import { ImageHolderService } from '../image-holder.service';
+import { Images } from '../image';
 
 
 @Component({
@@ -58,6 +59,8 @@ export class HomeComponent implements OnInit {
       this.file = e.target.files[0];
       this.canvas = canvas;
     }
+    this.imageHolder.keepImage(this.canvas.toDataURL());
+          this.router.navigate(['/captions']);
   }
   imageClicked(e: any) {
     this.imageHolder.keepImage(e.target.src);

@@ -11,7 +11,13 @@
     </button>
   </div>
 </div>
-<canvas #imgCanvas></canvas><img class="uploaded-img" [src]="url" />
+
+<!-- <br *ngIf="!imageSelected"> -->
+<h3 class="option-text" *ngIf="!imageSelected"> OR </h3>
+
+<canvas class="uploaded-img" *ngIf="imageSelected" #imgCanvas>
+  <img [src]="url" />
+</canvas>
 
 <div class="upload">
   <input
@@ -21,12 +27,16 @@
     accept="image/*"
   />
   <div *ngIf="imageSelected">
+    <br>
     <label>Tags: </label>
-    <input [(ngModel)]="tags" placeholder="Enter some tags" />
-    <button *ngIf="imageSelected" (click)="onUpload()" #uploadButton>
+    <input [(ngModel)]="tags" (keyup.enter)="onUpload()" placeholder="Enter some tags" />
+    <button (click)="onUpload()" #uploadButton>
       Upload
     </button>
   </div>
+
+  <br>
+  <br>
 
   <div>
     <img
