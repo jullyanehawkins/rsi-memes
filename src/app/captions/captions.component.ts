@@ -16,6 +16,7 @@ export class CaptionsComponent implements OnInit {
   imageClicked: HTMLImageElement;
   imgData: SafeUrl;
   context: CanvasRenderingContext2D;
+
   @ViewChild('imgCanvas') imgCanvas;
 
   constructor(private imageHolder: ImageHolderService) {}
