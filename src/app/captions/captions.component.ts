@@ -1,5 +1,6 @@
 import { Component, ViewChild, OnInit } from '@angular/core';
 import { ImageHolderService } from '../image-holder.service';
+import { SafeUrl } from '@angular/platform-browser';
 
 
 @Component({
@@ -13,8 +14,10 @@ export class CaptionsComponent implements OnInit {
   canvas: any;
   origImage: HTMLImageElement;
   file;
-
+  imageClicked: HTMLImageElement;
+  imgData: SafeUrl;
   context: CanvasRenderingContext2D;
+
   @ViewChild('imgCanvas') imgCanvas;
 
   constructor(private imageHolder: ImageHolderService) { }
@@ -25,54 +28,14 @@ export class CaptionsComponent implements OnInit {
     const context = canvas.getContext('2d');
     const _this = this;
     img.onload = function() {
-      console.log('ONLOAD');
+      // console.log('ONLOAD');
       canvas.width = img.width;
       canvas.height = img.height;
       context.drawImage(img, 0, 0);
       _this.origImage = img;
     };
     img.src = this.imageHolder.getImage();
-    this.canvas = canvas;
-  }
-  // onSelectImage(e: any): void {
-  //   const canvas = this.imgCanvas.nativeElement;
-  //   const context = canvas.getContext('2d');
-  //   context.clearRect(200, 200, 350, 350);
-  //   const _this = this;
-  //   // show rendered image to canvas
-  //   const render = new FileReader();
-  //   render.onload = function(event) {
-  //     const img = new Image();
-
-  //     img.onload = function() {
-  //       console.log('ONLOAD');
-  //       canvas.width = img.width;
-  //       canvas.height = img.height;
-  //       context.drawImage(img, 0, 0);
-  //       _this.origImage = img;
-  //     };
-  //     img.src = event.target.result;
-
-  //     console.log(e.target.files[0]);
-  //   };
-  //   render.readAsDataURL(e.target.files[0]);
-  //   this.file = e.target.files[0];
-  //   this.canvas = canvas;
-
-  // }
-  imageClicked(e: any): void {
-    const img = new Image();
-    const canvas = this.imgCanvas.nativeElement;
-    const context = canvas.getContext('2d');
-    const _this = this;
-    img.onload = function() {
-      console.log('ONLOAD');
-      canvas.width = img.width;
-      canvas.height = img.height;
-      context.drawImage(img, 0, 0);
-      _this.origImage = img;
-    };
-    img.src = this.imageHolder.getImage();
+    // console.log(this.imageHolder.getImage());
     this.canvas = canvas;
   }
   updateCaptions(e) {
@@ -106,16 +69,9 @@ export class CaptionsComponent implements OnInit {
       context.strokeText(this.bottomCaptions, imageCenterX, textBottomYOffset);
       context.fillText(this.bottomCaptions, imageCenterX, textBottomYOffset);
     }
-
-    this.canvas.toBlob(function(blob) {
-      const newImg = document.createElement('img'),
-        url = URL.createObjectURL(blob);
-
-      newImg.onload = function() {
-        URL.revokeObjectURL(url);
-      };
-      newImg.src = url;
-      document.body.appendChild(newImg);
-    });
   }
+    updateImg() {
+      // console.log('DOWNLOAD');
+      this.imgData = this.canvas.toDataURL('image/png');
+    }
 }
