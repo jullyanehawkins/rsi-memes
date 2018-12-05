@@ -14,7 +14,7 @@ export class ImageHolderService {
    * @param imgData b64 string containing image data
    */
   public keepImage(imgData: string): void {
-    console.log('image kept: ', imgData);
+    // console.log('image kept: ', imgData);
     this.imageData = imgData;
   }
 
