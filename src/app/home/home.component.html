@@ -1,31 +1,20 @@
 <!-- <app-image-result></app-image-result> -->
 <div class="search">
   <div class="search-pad">
-    <input
-      [(ngModel)]="searchQuery"
-      placeholder="Search for images"
-      (keyup.enter)="searchDatabase(searchQuery)"
-    />
-    <button (click)="searchDatabase(searchQuery)" type="button">
-      Find image
-    </button>
+    <input [(ngModel)]="searchQuery" placeholder="Search for images" (keyup.enter)="searchDatabase(searchQuery)" />
+    <button (click)="searchDatabase(searchQuery)" type="button">Find image</button>
   </div>
 </div>
 
 <!-- <br *ngIf="!imageSelected"> -->
 <h3 class="option-text" *ngIf="!imageSelected"> OR </h3>
 
-<canvas class="uploaded-img" *ngIf="imageSelected" #imgCanvas>
+<canvas class="uploaded-img" #imgCanvas>
   <img [src]="url" />
 </canvas>
 
 <div class="upload">
-  <input
-    type="file"
-    class="file"
-    (change)="onImageSelected($event)"
-    accept="image/*"
-  />
+  <input type="file" class="file" (change)="onImageSelected($event)" accept="image/*" />
   <div *ngIf="imageSelected">
     <br>
     <label>Tags: </label>
@@ -39,12 +28,6 @@
   <br>
 
   <div>
-    <img
-      id="results"
-      *ngFor="let image of images"
-      class="col-sm-3"
-      src="{{image.url}}"
-      (click)="imageClicked($event)"
-    />
+    <img *ngFor="let image of images" (click)="imageClicked($event)" class="col-sm-3" src="{{image.url}}" />
   </div>
 </div>
