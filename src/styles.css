@@ -25,6 +25,7 @@ body {
 
 .logo-container {
   padding: 2vh;
+  text-align: center;
 }
 
 .logo-container:hover {
@@ -63,7 +64,7 @@ body {
   font-size: 20px;
   border: none;
   cursor: pointer;
-  width: 50%;
+  /* width: 50%; */
   font-family: 'Roboto Mono', monospace;
 }
 
@@ -154,7 +155,7 @@ canvas {
 }
 
 .canvas-pad {
-  padding: 1%;
+  text-align: center;
 }
 
 label {
@@ -170,4 +171,8 @@ label {
 
 .top-caption, .bottom-caption {
   text-align: center;
+}
+
+h1 {
+  position: relative;
 }

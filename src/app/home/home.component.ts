@@ -25,6 +25,7 @@ export class HomeComponent implements OnInit {
   canvas: any;
   origImage: HTMLImageElement;
 
+
   constructor(
     private storageService: StorageService,
     private imageHolder: ImageHolderService,
@@ -32,7 +33,7 @@ export class HomeComponent implements OnInit {
   ) {}
 
   context: CanvasRenderingContext2D;
-  @ViewChild('imgCanvas') imgCanvas;
+@ViewChild('imgCanvas') imgCanvas;
 
   onImageSelected(e: any): void {
     if (e.target.files.length > 0) {
