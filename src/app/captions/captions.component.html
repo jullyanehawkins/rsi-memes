@@ -1,6 +1,8 @@
 <div class="canvas-pad">
-  <p class="top-caption"><input [(ngModel)]="topCaptions" (ngModelChange)="updateCaptions($event)" type="text" id="top-text" placeholder="Top text" /></p>
-<canvas #imgCanvas class="uploaded-img"></canvas>
-  <p class="bottom-caption"><input [(ngModel)]="bottomCaptions" (ngModelChange)="updateCaptions($event)" type="text" id="bottom-text" placeholder="Bottom text" /></p>
+  <p class="top-caption"><input [(ngModel)]="topCaptions" (ngModelChange)="updateCaptions($event)" type="text" id="top-text"
+      placeholder="Top text" /></p>
+  <canvas #imgCanvas class="uploaded-img"></canvas>
+  <p class="bottom-caption"><input [(ngModel)]="bottomCaptions" (ngModelChange)="updateCaptions($event)" type="text" id="bottom-text"
+      placeholder="Bottom text" /></p>
   <a [href]="imgData" download="meme.png"><button id="generate-btn" (click)="updateImg()">Create your meme!</button></a>
 </div>

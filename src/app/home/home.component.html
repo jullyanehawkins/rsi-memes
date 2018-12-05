@@ -9,14 +9,13 @@
 <!-- <br *ngIf="!imageSelected"> -->
 <h3 class="option-text" *ngIf="!imageSelected"> OR </h3>
 
-<canvas class="uploaded-img" #imgCanvas>
+<canvas class="uploaded-img" *ngIf="imageSelected" #imgCanvas>
   <img [src]="url" />
 </canvas>
 
 <div class="upload">
   <input type="file" class="file" (change)="onImageSelected($event)" accept="image/*" />
   <div *ngIf="imageSelected">
-    <br>
     <label>Tags: </label>
     <input [(ngModel)]="tags" (keyup.enter)="onUpload()" placeholder="Enter some tags" />
     <button (click)="onUpload()" #uploadButton>
@@ -28,6 +27,6 @@
   <br>
 
   <div>
-    <img *ngFor="let image of images" (click)="imageClicked($event)" class="col-sm-3" src="{{image.url}}" />
+    <img *ngFor="let image of images" (click)="onImageClicked(image)" class="col-sm-3" src="{{image.url}}" />
   </div>
 </div>

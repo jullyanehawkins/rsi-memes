@@ -2,6 +2,7 @@ import { Component, ViewChild, OnInit } from '@angular/core';
 import { ImageHolderService } from '../image-holder.service';
 import { SafeUrl } from '@angular/platform-browser';
 
+
 @Component({
   selector: 'app-captions',
   templateUrl: './captions.component.html',
@@ -19,7 +20,7 @@ export class CaptionsComponent implements OnInit {
 
   @ViewChild('imgCanvas') imgCanvas;
 
-  constructor(private imageHolder: ImageHolderService) {}
+  constructor(private imageHolder: ImageHolderService) { }
 
   ngOnInit(): void {
     const img = new Image();
@@ -48,13 +49,10 @@ export class CaptionsComponent implements OnInit {
     context.textAlign = 'center'; // draw text centered
     context.textBaseline = 'top'; // allign text with the top of coordinates
 
-    if (this.topCaptions) {
-      // draw only if defined and string length > 0
+    if (this.topCaptions) { // draw only if defined and string length > 0
 
       // crazy formula to resize fontSize to fit text on image
-      const fontSizeTop = Math.floor(
-        this.canvas.height / (6 + 1.8 * Math.floor(this.topCaptions.length / 4))
-      );
+      const fontSizeTop = Math.floor(this.canvas.height / (6 + 1.8 * Math.floor(this.topCaptions.length / 4)));
       context.font = `bold ${fontSizeTop}pt sans-serif`; // set font style for top drawing
       context.lineWidth = fontSizeTop / 6; // text stroke line width
       const textYTopOffset = 0.2 * fontSizeTop; // offset space from top
@@ -62,13 +60,9 @@ export class CaptionsComponent implements OnInit {
       context.fillText(this.topCaptions, imageCenterX, textYTopOffset); // then draw the filled text (white)
     }
 
-    if (this.bottomCaptions) {
-      // draw only if defined and string length > 0
+    if (this.bottomCaptions) { // draw only if defined and string length > 0
       // same crazy formula
-      const fontSizeBottom = Math.floor(
-        this.canvas.height /
-          (6 + 1.8 * Math.floor(this.bottomCaptions.length / 4))
-      );
+      const fontSizeBottom = Math.floor(this.canvas.height / (6 + 1.8 * Math.floor(this.bottomCaptions.length / 4)));
       context.font = `bold ${fontSizeBottom}pt sans-serif`;
       context.lineWidth = fontSizeBottom / 6;
       const textBottomYOffset = this.canvas.height - 1.4 * fontSizeBottom;
