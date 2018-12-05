@@ -1,38 +1,75 @@
-import { Component, OnInit } from '@angular/core';
-import { ImageService } from '../image.service';
-import { Image } from '../image';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { map } from 'rxjs/operators';
+import { StorageService } from '../services/storage.service';
+
 
 @Component({
   selector: 'app-image-result',
-  templateUrl: './image-result.component.html',
-
+  templateUrl: './image-result.component.html'
 })
 export class ImageResultComponent implements OnInit {
+  searchQuery: '';
   images: any[];
-  imagesFound: boolean = false;
-  searching: boolean = false;
+  imagesFound = false;
+  searching = false;
+  url = '';
+  file;
+  selectedImage = null;
+  tags: string;
+  topCaptions: string;
+  bottomCaptions: string;
+  canvas: any;
+  origImage: any;
 
-  handleSuccess(data) {
+  constructor(private storageService: StorageService) { }
+
+  context: CanvasRenderingContext2D;
+  @ViewChild('imgCanvas') imgCanvas;
+
+  handleSuccess(response) {
     this.imagesFound = true;
-    this.images = data.hits;
-    console.log(data.hits);
+    this.images = response.map(image => {
+      return {
+        // id: image.id,
+        // embed_url: image.embed_url,
+        // title: image.title,
+        url: image,
+        // downsized_url: image.images.downsized.url
+      };
+    });
   }
 
-  handleError(error) {
-    console.log(error);
+  onImageSelected(e: any): void {
+    const canvas = this.imgCanvas.nativeElement;
+    const context = canvas.getContext('2d');
+    context.clearRect(0, 0, canvas.width, canvas.height);
+    const _this = this;
+    // show rendered image to canvas
+    const render = new FileReader();
+    render.onload = function(event) {
+      const img = new Image();
+    };
   }
-  constructor(private imageService: ImageService) { }
 
-  searchImage(query: string) {
-    this.searching = true;
-    return this.imageService.getImage(query).subscribe(
-      data => this.handleSuccess(data),
-      error => this.handleError(error),
-      () => this.searching = false
-    );
+  onUpload() {
+    if (this.file && this.tags) {
+      this.storageService.uploadMeme(this.file, this.tags + ' meme',
+        null,
+        (err) => { console.log(err); },
+        null); // route to another page
+    }
+  }
+  searchDatabase(query: string) {
+    if (query) {
+      return this.storageService
+        .pullMemes(
+          query,
+          urls => this.handleSuccess(urls),
+          null,
+          () => (this.searching = false));
+    }
   }
   ngOnInit() {
 
   }
-
 }

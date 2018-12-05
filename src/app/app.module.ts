@@ -11,6 +11,11 @@ import { HttpClientModule } from '@angular/common/http';
 import { ImageService } from './image.service';
 import { HttpModule } from '@angular/http';
 import { HomeComponent } from './home/home.component';
+import { AuthenticationService } from './services/authentication.service';
+import { StorageService } from './services/storage.service';
+import { CaptionsComponent } from './captions/captions.component';
+import { ImageHolderService } from './image-holder.service';
+
 
 
 
@@ -22,6 +27,8 @@ import { HomeComponent } from './home/home.component';
     ImageResultComponent,
     NgbdDropdownBasicComponent,
     HomeComponent,
+    CaptionsComponent,
+
   ],
   imports: [
     BrowserModule,
@@ -32,7 +39,7 @@ import { HomeComponent } from './home/home.component';
     HttpModule,
     AppRoutingModule,
   ],
-  providers: [ImageService],
+  providers: [AuthenticationService, StorageService, ImageHolderService, ImageService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

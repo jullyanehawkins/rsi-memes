@@ -1,31 +1,45 @@
 /* You can add global styles to this file, and also import other style files */
 
 html {
-    box-sizing: border-box;
-    padding: 0;
-    margin: 0;
-  }
-  *, *:before, *:after {
-    box-sizing: inherit;
-  }
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
 
-  body {
-    background-image: url(assets/rsi-background.jpg);
-    background-repeat: no-repeat;
-    background-size: cover;
-    height: 100vh;
-    width: auto;
-    padding: 0;
-    margin: 0;
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+body {
+  /* background-image: url(assets/rsi-background.jpg); */
+  background-color: #002B49;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100vh;
+  width: auto;
+  padding: 0;
+  margin: 0;
+}
+
+.logo-container {
+  padding: 2vh;
+  text-align: center;
+}
+
+.logo-container:hover {
+  cursor: pointer;
 }
 
 .logo {
-    position: relative;
-    height: 110px;
-    width: 250px;
-    top: 40px;
-    left: 40px;
+  position: relative;
+  height: 110px;
+  width: 250px;
+  top: 40px;
+  left: 40px;
 }
+
 .row {
   color: white;
   font-family: 'Roboto Mono', monospace;
@@ -47,9 +61,10 @@ html {
   background-color: white;
   color: black;
   padding: 16px;
-  font-size: 16px;
+  font-size: 20px;
   border: none;
   cursor: pointer;
+  /* width: 50%; */
   font-family: 'Roboto Mono', monospace;
 }
 
@@ -57,7 +72,7 @@ html {
   display: none;
   background-color: #f9f9f9;
   min-width: 160px;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   z-index: 1;
   font-family: 'Roboto Mono', monospace;
 }
@@ -75,6 +90,8 @@ html {
 
 .dropdown:hover .dropdown-content {
   display: block;
+  position: absolute;
+  width: 100%;
 }
 
 .dropdown:hover .dropbtn {
@@ -84,7 +101,7 @@ html {
 .search {
   width: 100%;
   clear: both;
-  margin-top: 20vh;
+  padding: 1vh;
   text-align: center;
   font-family: 'Roboto Mono', monospace;
 }
@@ -92,4 +109,70 @@ html {
 .center-align {
   text-align: center;
   width: 50%;
+}
+
+.file {
+  color: #f1f1f1;
+  font-family: 'Roboto Mono', monospace;
+}
+
+button {
+  font-family: 'Roboto Mono', monospace;
+}
+
+a,
+a:hover {
+  color: black;
+  text-decoration: none;
+}
+
+.upload {
+  width: 100%;
+  padding: 1vh;
+  text-align: center;
+  font-family: 'Roboto Mono', monospace;
+  bottom: 10vh;
+}
+
+.uploaded-img {
+  text-align: center;
+  margin: 30px auto;
+  align-self: center;
+  display: flex;
+}
+
+.waves {
+  position: fixed;
+  bottom: 0px;
+  right: 0px;
+  height: 25%;
+  z-index: -1;
+}
+
+canvas {
+  width: 400px;
+  height: auto;
+}
+
+.canvas-pad {
+  text-align: center;
+}
+
+label {
+  color: white;
+}
+
+.option-text {
+  text-align: center;
+  color: white;
+  margin-bottom: 0;
+  font-family: 'Roboto Mono', monospace;
+}
+
+.top-caption, .bottom-caption {
+  text-align: center;
+}
+
+h1 {
+  position: relative;
 }

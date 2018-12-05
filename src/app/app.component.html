@@ -1,10 +1,22 @@
-<img class="col-md-3 col-sm-6" src="../assets/rsi-logo.jpg" alt="RSI Logo" />
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-3 col-sm-6 logo-container">
+      <nav routerLink="/home">
+        <img src="../assets/RSI-Logo.svg" alt="RSI Logo" />
+      </nav>
+      <h1>Meme Generator</h1>
+    </div>
 
-<div class="col-md-5 float-right button-container">
-  <div class="home col-md-4 offset-md-2 col-sm-6 center-align">
-    <button class="dropbtn">Home</button>
+    <div class="col-md-4 col-sm-6 offset-md-5 button-container">
+      <div class="home col-sm-4 offset-sm-8 center-align">
+        <button class="dropbtn">
+          <nav><a routerLink="/home">Home</a></nav>
+        </button>
+      </div>
+    </div>
+    <app-dropdown></app-dropdown>
   </div>
-  <app-dropdown></app-dropdown>
-
 </div>
 <router-outlet></router-outlet>
+
+<img class="waves" src="../assets/swoosh-topbar.png" alt="RSI Red Waves" />
