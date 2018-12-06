@@ -30,11 +30,7 @@ export class ImageResultComponent implements OnInit {
     this.imagesFound = true;
     this.images = response.map(image => {
       return {
-        // id: image.id,
-        // embed_url: image.embed_url,
-        // title: image.title,
         url: image,
-        // downsized_url: image.images.downsized.url
       };
     });
   }

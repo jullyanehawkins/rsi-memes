@@ -14,7 +14,6 @@ export class ImageService {
   private API_KEY: string = environment.MEME_API_KEY;
   private imageUrl: string = environment.MEME_API_URL;
   private URL: string = this.imageUrl + '&api_key=' + this.API_KEY + '&q=';
-  // private perPage: string = '&per_page=5';
 
   constructor(private http: Http) {}
   getImage(query): Observable<Images[]> {
