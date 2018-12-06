@@ -3,23 +3,4 @@
     <input [(ngModel)]="searchQuery" placeholder="Search for images" (keyup.enter)="searchDatabase(searchQuery)" />
     <button (click)="searchDatabase(searchQuery)" type="button">Find images</button>
   </div>
-
-  <!-- <div class="canvas-pad">
-    <canvas #imgCanvas></canvas> <img class="uploaded-img" [src]="url" />
-    height="200">
-    <div class="upload">
-      <input type="file" class="file" (change)="onImageSelected($event)" accept="image/*" />
-
-      <button (click)="onUpload()">Upload</button> <br />
-
-      <label>Tags</label>
-      <input [(ngModel)]="tags" placeholder="enter some tags" /> <br />
-      <br />
-    </div>
-  </div>
-
-  <p><input [(ngModel)]="topCaptions" (ngModelChange)="updateCaptions($event)" type="text" id="top-text" /></p>
-  <p><input [(ngModel)]="bottomCaptions" (ngModelChange)="updateCaptions($event)" type="text" id="bottom-text" /></p>
-  <p><button id="generate-btn">Create your meme!</button></p> -->
-  <!-- <p><canvas id="meme-canvas"></canvas></p> -->
 </div>

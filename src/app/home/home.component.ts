@@ -123,16 +123,8 @@ export class HomeComponent implements OnInit {
     const context = this.canvas.getContext('2d');
     const _this = this;
 
-    // this.getOrientation(this.file, function(orientation) {
-    //   console.log('ORIENTATION :: ', orientation);
-    //   imgOrientation = orientation;
-    // });
-
     // show rendered image to canvas
     const reader = new FileReader();
-    // reader.onload = onLoadFile;
-    // reader.readAsDataURL(this.selectedImg);
-
 
     reader.onload = function(event) {
       const img = new Image();
@@ -142,85 +134,6 @@ export class HomeComponent implements OnInit {
         _this.canvas.width = img.width;
         _this.canvas.height = img.height;
         context.drawImage(img, 0, 0);
-
-
-
-
-        // context.clearRect(0, 0, _this.canvas.width, _this.canvas.height);
-        // let height = img.height, width = img.width;
-
-        // if (imgOrientation > 4) {
-        //   // these are rotated, swap width and height and calculate aspect ratio
-        //   width = height;
-        //   height = (width / _this.canvas.width) * _this.canvas.height;
-
-        //   _this.canvas.attr({
-        //     width: height,
-        //     height: width
-        //   });
-        // } else {
-        //   // these aren't rotated, so width and height remain normal
-        //   _this.canvas.attr({
-        //     width: width,
-        //     height: height
-        //   });
-        // }
-
-        // switch (imgOrientation) {
-        //   case 1:
-        //     // normal
-        //     context.drawImage(img, 0, 0, width, height);
-        //     break;
-        //   case 2:
-        //     // flip horizontal
-        //     context.translate(width, 0);
-        //     context.scale(-1, 1);
-        //     context.drawImage(img, 0, 0, width, height);
-        //     break;
-        //   case 3:
-        //     // rotate 180
-        //     context.translate(width, height);
-        //     context.rotate(Math.PI);
-        //     context.drawImage(img, 0, 0, width, height);
-        //     break;
-        //   case 4:
-        //     // flip vertical
-        //     context.translate(0, height);
-        //     context.scale(1, -1);
-        //     context.drawImage(img, 0, 0, width, height);
-        //     break;
-        //   case 5:
-        //     // flip vertical, rotate 90 clockwise
-        //     context.rotate(Math.PI / 2);
-        //     context.scale(1, -1);
-        //     context.drawImage(img, 0, 0, width, height);
-        //     break;
-        //   case 6:
-        //     // rotate 90 clockwise
-        //     context.rotate(Math.PI / 2);
-        //     context.translate(0, -height);
-        //     context.drawImage(img, 0, 0, width, height);
-        //     break;
-        //   case 7:
-        //     // flip horizontal, rotate 90 counter clockwise
-        //     context.rotate(Math.PI / 2);
-        //     context.translate(width, -height);
-        //     context.scale(-1, 1);
-        //     context.drawImage(img, 0, 0, width, height);
-        //     break;
-        //   case 8:
-        //     // rotate 90 counter clockwise
-        //     context.rotate(-Math.PI / 2);
-        //     context.translate(-width, 0);
-        //     context.drawImage(img, 0, 0, width, height);
-        //     break;
-        //   default:
-        //     // normal
-        //     context.drawImage(img, 0, 0, width, height);
-        //     return;
-        // }
-
-
 
       };
       img.src = event.target.result;
