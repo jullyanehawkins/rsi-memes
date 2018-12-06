@@ -91,10 +91,11 @@ export class HomeComponent implements OnInit {
         null,
         (err) => { console.log(err); },
         () => {
-          this.imageHolder.keepImage(this.canvas.toDataURL());
-          this.router.navigate(['/captions']);
+          
         });
     }
+    this.imageHolder.keepImage(this.canvas.toDataURL());
+          this.router.navigate(['/captions']);
   }
 
   searchDatabase(query: string) {
