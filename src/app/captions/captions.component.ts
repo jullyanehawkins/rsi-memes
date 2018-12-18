@@ -1,6 +1,7 @@
 import { Component, ViewChild, OnInit } from '@angular/core';
 import { ImageHolderService } from '../image-holder.service';
 import { SafeUrl } from '@angular/platform-browser';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -20,24 +21,26 @@ export class CaptionsComponent implements OnInit {
 
   @ViewChild('imgCanvas') imgCanvas;
 
-  constructor(private imageHolder: ImageHolderService) { }
+  constructor(private imageHolder: ImageHolderService, private router: Router) { }
 
   ngOnInit(): void {
     const img = new Image();
+    // img.crossOrigin = 'anonymous';
     const canvas = this.imgCanvas.nativeElement;
     const context = canvas.getContext('2d');
     const _this = this;
+
     img.onload = function() {
-      // console.log('ONLOAD');
       canvas.width = img.width;
       canvas.height = img.height;
       context.drawImage(img, 0, 0);
       _this.origImage = img;
     };
     img.src = this.imageHolder.getImage();
-    // console.log(this.imageHolder.getImage());
+    if (!img.src.startsWith('https://s3.')) { this.router.navigate(['/home']); }
     this.canvas = canvas;
   }
+
   updateCaptions(e) {
     const context = this.canvas.getContext('2d');
     context.clearRect(0, 0, this.canvas.width, this.canvas.height); // clearing canvas
@@ -70,8 +73,7 @@ export class CaptionsComponent implements OnInit {
       context.fillText(this.bottomCaptions, imageCenterX, textBottomYOffset);
     }
   }
-    updateImg() {
-      // console.log('DOWNLOAD');
-      this.imgData = this.canvas.toDataURL('image/png');
-    }
+  updateImg() {
+    this.imgData = this.canvas.toDataURL('image/png');
+  }
 }
