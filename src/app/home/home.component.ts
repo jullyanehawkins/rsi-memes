@@ -45,11 +45,9 @@ export class HomeComponent implements OnInit {
   }
 
   onUpload() {
-    console.log(typeof(this.selectedImg));
-    console.log(this.selectedImg.name);
     if (this.selectedImg && this.tags) {
       this.storageService.uploadMeme(this.selectedImg, this.tags + ' meme',
-        null,
+        (response) => { console.log(response); },
         (err) => { console.log(err); }, // @TODO actually handle the error
         () => {
           this.imageHolder.keepImage(this.canvas.toDataURL());
