@@ -37,7 +37,7 @@ export class CaptionsComponent implements OnInit {
       _this.origImage = img;
     };
     img.src = this.imageHolder.getImage();
-    if (!img.src.startsWith('https://s3.')) { this.router.navigate(['/home']); }
+    if (!(img.src.startsWith('https://s3.') || img.src.startsWith('data:image'))) { this.router.navigate(['/home']); }
     this.canvas = canvas;
   }
 
